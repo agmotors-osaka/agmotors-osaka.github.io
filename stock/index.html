@@ -316,6 +316,12 @@ p{margin:0}
      full row (logo + 8 chips + SNS + CTA, tel already hidden) fits at 1280px
      and squeezes below it, so the hamburger takes over there. */
   .nav,.hdr__act .btn,.hdr__act .tel{display:none}
+  /* With nav/tel/CTA gone, the SNS circles are the only thing left beside the
+     logo — at their full 44px desktop size they read as oversized in the now-
+     sparse row, so shrink them here (header only; footer SNS stay at 44px). */
+  .hdr__act .sns{gap:8px}
+  .hdr__act .sns__i{width:36px;height:36px}
+  .hdr__act .sns__i svg{width:17px;height:17px}
   .burger{display:grid;place-items:center;width:44px;height:44px;
     background:none;border:1px solid rgba(255,255,255,.4);border-radius:2px;cursor:pointer}
   .burger i{display:block;width:19px;height:1.5px;background:#fff;box-shadow:0 6px #fff,0 -6px #fff}
