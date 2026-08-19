@@ -1,0 +1,1989 @@
+{
+ "generatedAt": "2026-08-18T18:02:35+09:00",
+ "pipeline": "scripts/build_images.py",
+ "widths": [
+  640,
+  960,
+  1280,
+  1920
+ ],
+ "quality": {
+  "avif": 68,
+  "webp": 84,
+  "jpg": 88
+ },
+ "images": [
+  {
+   "id": "ag-veh-range-rover-01",
+   "sourceId": "ag-veh-range-rover-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたブロンズのレンジローバー",
+   "maker": "Land Rover",
+   "model": "Range Rover",
+   "vehicle": "Land Rover レンジローバー",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 33816,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 40672,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 65033,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 65501,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 80814,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 134343,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 104771,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 134924,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 231062,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 236025,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 313614,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-range-rover-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 565966,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-toyota-crown-01",
+   "sourceId": "ag-veh-toyota-crown-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたパールホワイトのトヨタ クラウン",
+   "maker": "トヨタ",
+   "model": "クラウン",
+   "vehicle": "トヨタ クラウン",
+   "vehicleVerified": false,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 25354,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 31740,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 55187,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 48334,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 61108,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 111289,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 75898,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 96978,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 184480,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 148252,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 197372,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-crown-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 432462,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-toyota-alphard-02",
+   "sourceId": "ag-veh-toyota-alphard-02",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたブラックのトヨタ アルファード",
+   "maker": "トヨタ",
+   "model": "アルファード",
+   "vehicle": "トヨタ アルファード",
+   "vehicleVerified": false,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 40604,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 48362,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 73506,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 76957,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 91254,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 149456,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 118722,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 146320,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 250262,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 240973,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 309294,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-02-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 576623,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-porsche-911-01",
+   "sourceId": "ag-veh-porsche-911-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたホワイトのポルシェ 911 カブリオレ",
+   "maker": "ポルシェ",
+   "model": "911",
+   "vehicle": "ポルシェ 911",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 19483,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 24782,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 47356,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 34566,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 45424,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 91822,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 51967,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 67828,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 148266,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 98026,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 130494,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-911-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 345915,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-mercedes-sclass-01",
+   "sourceId": "ag-veh-mercedes-sclass-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたホワイトのメルセデス・ベンツ Sクラス",
+   "maker": "メルセデス・ベンツ",
+   "model": "Sクラス",
+   "vehicle": "メルセデス・ベンツ Sクラス",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 29064,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 35484,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 58627,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 54908,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 68554,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 116588,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 85333,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 107104,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 190860,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 165228,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 209124,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-sclass-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 427265,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-lamborghini-urus-01",
+   "sourceId": "ag-veh-lamborghini-urus-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたホワイトのランボルギーニ ウルス",
+   "maker": "ランボルギーニ",
+   "model": "ウルス",
+   "vehicle": "ランボルギーニ ウルス",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 23953,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 30032,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 54462,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 43504,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 55398,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 106438,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 66287,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 86134,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 173020,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 127020,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 166194,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lamborghini-urus-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 397300,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-mercedes-gclass-01",
+   "sourceId": "ag-veh-mercedes-gclass-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたシャンパンカラーのメルセデスAMG Gクラス",
+   "maker": "メルセデス・ベンツ",
+   "model": "Gクラス",
+   "vehicle": "メルセデス・ベンツ Gクラス",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 33237,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 41726,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 66882,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 64586,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 82314,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 137730,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 101600,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 134616,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 233809,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 216826,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 295294,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-gclass-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 559155,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-lexus-rx-01",
+   "sourceId": "ag-veh-lexus-rx-01",
+   "width": 1920,
+   "height": 1440,
+   "aspect": 1.3333,
+   "role": [
+    "hero",
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": true,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたパールホワイトのレクサス RX",
+   "maker": "レクサス",
+   "model": "RX",
+   "vehicle": "レクサス RX",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 28753,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 35796,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 59971,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 53460,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 67938,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 119330,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 83037,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 106358,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 196598,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-1920.avif",
+     "width": 1920,
+     "height": 1440,
+     "format": "avif",
+     "bytes": 161023,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-1920.webp",
+     "width": 1920,
+     "height": 1440,
+     "format": "webp",
+     "bytes": 209862,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-rx-01-1920.jpg",
+     "width": 1920,
+     "height": 1440,
+     "format": "jpg",
+     "bytes": 446916,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-lexus-lx-01",
+   "sourceId": "ag-veh-lexus-lx-01",
+   "width": 1477,
+   "height": 1108,
+   "aspect": 1.333,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたホワイトのレクサス LX",
+   "maker": "レクサス",
+   "model": "LX",
+   "vehicle": "レクサス LX",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 29959,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 38576,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 62995,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 55137,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 72020,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 125399,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 83015,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 110152,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 200455,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-lexus-lx-03",
+   "sourceId": "ag-veh-lexus-lx-03",
+   "width": 1440,
+   "height": 1080,
+   "aspect": 1.3333,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたブラックのレクサス LX",
+   "maker": "レクサス",
+   "model": "LX",
+   "vehicle": "レクサス LX",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 32705,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 37918,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 61086,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 66336,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 77020,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 125165,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 109933,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 127490,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-03-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 207302,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-lexus-lx-02",
+   "sourceId": "ag-veh-lexus-lx-02",
+   "width": 1477,
+   "height": 831,
+   "aspect": 1.7774,
+   "role": [
+    "gallery"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたブラックのレクサス LX を横位置で捉えた一枚",
+   "maker": "レクサス",
+   "model": "LX",
+   "vehicle": "レクサス LX",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-640.avif",
+     "width": 640,
+     "height": 360,
+     "format": "avif",
+     "bytes": 29793,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-640.webp",
+     "width": 640,
+     "height": 360,
+     "format": "webp",
+     "bytes": 36292,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-640.jpg",
+     "width": 640,
+     "height": 360,
+     "format": "jpg",
+     "bytes": 54366,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-960.avif",
+     "width": 960,
+     "height": 540,
+     "format": "avif",
+     "bytes": 51732,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-960.webp",
+     "width": 960,
+     "height": 540,
+     "format": "webp",
+     "bytes": 63698,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-960.jpg",
+     "width": 960,
+     "height": 540,
+     "format": "jpg",
+     "bytes": 105999,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-1280.avif",
+     "width": 1280,
+     "height": 720,
+     "format": "avif",
+     "bytes": 73295,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-1280.webp",
+     "width": 1280,
+     "height": 720,
+     "format": "webp",
+     "bytes": 92658,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lx-02-1280.jpg",
+     "width": 1280,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 163848,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-mercedes-amggt-01",
+   "sourceId": "ag-veh-mercedes-amggt-01",
+   "width": 1477,
+   "height": 1108,
+   "aspect": 1.333,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたホワイトのメルセデスAMG GT 4ドアクーペ",
+   "maker": "メルセデス・ベンツ",
+   "model": "AMG GT 4ドアクーペ",
+   "vehicle": "メルセデス・ベンツ AMG GT 4ドアクーペ",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 23039,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 29358,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 52914,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 40952,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 53964,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 102419,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 59074,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 78914,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-mercedes-amggt-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 160400,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-volvo-v40-01",
+   "sourceId": "ag-veh-volvo-v40-01",
+   "width": 1440,
+   "height": 1080,
+   "aspect": 1.3333,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたレッドのボルボ V40",
+   "maker": "ボルボ",
+   "model": "V40",
+   "vehicle": "ボルボ V40",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 27753,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 34258,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 56676,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 53009,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 65164,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 111369,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-1280.avif",
+     "width": 1280,
+     "height": 960,
+     "format": "avif",
+     "bytes": 84755,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-1280.webp",
+     "width": 1280,
+     "height": 960,
+     "format": "webp",
+     "bytes": 105416,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-volvo-v40-01-1280.jpg",
+     "width": 1280,
+     "height": 960,
+     "format": "jpg",
+     "bytes": 180656,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-bmw-x5-01",
+   "sourceId": "ag-veh-bmw-x5-01",
+   "width": 1440,
+   "height": 1377,
+   "aspect": 1.0458,
+   "role": [
+    "gallery"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "屋外で撮影されたホワイトのBMW X5",
+   "maker": "BMW",
+   "model": "X5",
+   "vehicle": "BMW X5",
+   "vehicleVerified": false,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-640.avif",
+     "width": 640,
+     "height": 612,
+     "format": "avif",
+     "bytes": 47258,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-640.webp",
+     "width": 640,
+     "height": 612,
+     "format": "webp",
+     "bytes": 57166,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-640.jpg",
+     "width": 640,
+     "height": 612,
+     "format": "jpg",
+     "bytes": 88178,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-960.avif",
+     "width": 960,
+     "height": 918,
+     "format": "avif",
+     "bytes": 90264,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-960.webp",
+     "width": 960,
+     "height": 918,
+     "format": "webp",
+     "bytes": 108650,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-960.jpg",
+     "width": 960,
+     "height": 918,
+     "format": "jpg",
+     "bytes": 175708,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-1280.avif",
+     "width": 1280,
+     "height": 1224,
+     "format": "avif",
+     "bytes": 130071,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-1280.webp",
+     "width": 1280,
+     "height": 1224,
+     "format": "webp",
+     "bytes": 164236,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-bmw-x5-01-1280.jpg",
+     "width": 1280,
+     "height": 1224,
+     "format": "jpg",
+     "bytes": 277191,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-lexus-lm-01",
+   "sourceId": "ag-veh-lexus-lm-01",
+   "width": 1107,
+   "height": 830,
+   "aspect": 1.3337,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたブラックのレクサス LM",
+   "maker": "レクサス",
+   "model": "LM",
+   "vehicle": "レクサス LM",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-lexus-lm-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 37810,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lm-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 45230,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lm-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 69056,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lm-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 69887,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lm-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 84620,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-lexus-lm-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 135786,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-toyota-alphard-01",
+   "sourceId": "ag-veh-toyota-alphard-01",
+   "width": 1107,
+   "height": 830,
+   "aspect": 1.3337,
+   "role": [
+    "gallery"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたダークトーンのトヨタ製ミニバン",
+   "maker": "トヨタ",
+   "model": null,
+   "vehicle": "トヨタ アルファード／ヴェルファイア",
+   "vehicleVerified": false,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 30221,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 37340,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 62154,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 54029,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 68830,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-toyota-alphard-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 119557,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-porsche-macan-01",
+   "sourceId": "ag-veh-porsche-macan-01",
+   "width": 1080,
+   "height": 810,
+   "aspect": 1.3333,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたホワイトのポルシェ マカン",
+   "maker": "ポルシェ",
+   "model": "マカン",
+   "vehicle": "ポルシェ マカン",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 21900,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 27704,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 51140,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-01-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 36885,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-01-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 49622,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-01-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 94961,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-veh-porsche-macan-02",
+   "sourceId": "ag-veh-porsche-macan-02",
+   "width": 1107,
+   "height": 830,
+   "aspect": 1.3337,
+   "role": [
+    "gallery",
+    "vehicle"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに展示されたブラックのポルシェ マカン",
+   "maker": "ポルシェ",
+   "model": "マカン",
+   "vehicle": "ポルシェ マカン",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-02-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 28986,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-02-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 35264,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-02-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 59772,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-02-960.avif",
+     "width": 960,
+     "height": 720,
+     "format": "avif",
+     "bytes": 52246,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-02-960.webp",
+     "width": 960,
+     "height": 720,
+     "format": "webp",
+     "bytes": 65046,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-veh-porsche-macan-02-960.jpg",
+     "width": 960,
+     "height": 720,
+     "format": "jpg",
+     "bytes": 115782,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-showroom-gclass-pair-01",
+   "sourceId": "ag-showroom-gclass-pair-01",
+   "width": 640,
+   "height": 480,
+   "aspect": 1.3333,
+   "role": [
+    "showroom",
+    "gallery"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールームに並ぶメルセデス・ベンツ Gクラス2台",
+   "maker": "メルセデス・ベンツ",
+   "model": "Gクラス",
+   "vehicle": "メルセデス・ベンツ Gクラス2台",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-showroom-gclass-pair-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 30341,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-showroom-gclass-pair-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 39856,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-showroom-gclass-pair-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 46950,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-showroom-lexus-lx-01",
+   "sourceId": "ag-showroom-lexus-lx-01",
+   "width": 640,
+   "height": 480,
+   "aspect": 1.3333,
+   "role": [
+    "showroom",
+    "gallery"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gショールーム正面に展示されたブラックのレクサス LX",
+   "maker": "レクサス",
+   "model": "LX",
+   "vehicle": "レクサス LX",
+   "vehicleVerified": true,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-showroom-lexus-lx-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 22696,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-showroom-lexus-lx-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 29824,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-showroom-lexus-lx-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 35876,
+     "exifStripped": true
+    }
+   ]
+  },
+  {
+   "id": "ag-showroom-lounge-01",
+   "sourceId": "ag-showroom-lounge-01",
+   "width": 640,
+   "height": 480,
+   "aspect": 1.3333,
+   "role": [
+    "showroom"
+   ],
+   "heroGrade": false,
+   "publish": true,
+   "alt": "A&Gの商談スペース。2台のソファとガラステーブル",
+   "maker": null,
+   "model": null,
+   "vehicle": null,
+   "vehicleVerified": null,
+   "focalPoint": {
+    "desktop": "50% 52%",
+    "mobile": "50% 50%"
+   },
+   "variants": [
+    {
+     "src": "/images/gallery/ag-showroom-lounge-01-640.avif",
+     "width": 640,
+     "height": 480,
+     "format": "avif",
+     "bytes": 21027,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-showroom-lounge-01-640.webp",
+     "width": 640,
+     "height": 480,
+     "format": "webp",
+     "bytes": 28114,
+     "exifStripped": true
+    },
+    {
+     "src": "/images/gallery/ag-showroom-lounge-01-640.jpg",
+     "width": 640,
+     "height": 480,
+     "format": "jpg",
+     "bytes": 33546,
+     "exifStripped": true
+    }
+   ]
+  }
+ ]
+}

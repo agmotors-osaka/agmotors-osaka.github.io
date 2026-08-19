@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>会社案内 ｜ 株式会社A&amp;G</title>
+<meta name="description" content="株式会社A&amp;Gの会社案内。">
+<style>
+/* Subset to the site's own character set by scripts/subset_fonts.py.
+   1.0MB -> 115KB per weight. Only 400 and 500 are used anywhere in the design. */
+@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:400;font-display:swap;
+  src:url("/fonts/noto-sans-jp-400.woff2") format("woff2");}
+@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:500;font-display:swap;
+  src:url("/fonts/noto-sans-jp-500.woff2") format("woff2");}
+@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:700;font-display:swap;
+  src:url("/fonts/noto-sans-jp-700.woff2") format("woff2");}
+
+:root{
+  --ag-black:#0b0b0b; --ag-ink:#141414; --ag-paper:#f4f3ee; --ag-white:#fff;
+  --ag-muted:#5c5c57; --ag-muted-d:#b0b0aa; --ag-line:#d8d7d1; --ag-line-d:#2a2a2a;
+  --ag-red:#d5112a;
+  --jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --ui:"Helvetica Neue",Inter,"Noto Sans JP",sans-serif;
+  --pad:clamp(18px,4vw,64px); --max:1400px;
+  --gap-s:clamp(64px,7vw,110px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ag-black);color:var(--ag-white);
+  font-family:var(--jp);font-size:17px;line-height:1.75;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,picture{display:block;max-width:100%}
+picture img{width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-weight:500;line-height:1.3;word-break:keep-all;overflow-wrap:normal;
+  letter-spacing:.01em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--ag-red);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* ---------- header ----------
+   One row: logo, nav chips, then the action cluster — aligned on a single
+   baseline as requested. Fits because the chips are compact (13.5px / 12px
+   pad ≈ 740px for all eight) and the phone number yields first: measured at
+   1440px the full row is ~1,345px against a 1,400px cap; below 1400px the tel
+   is hidden, and below 1180px the nav folds into the hamburger as before. */
+.hdr{position:sticky;top:0;z-index:40;padding-block:18px;background:var(--ag-black);
+  color:var(--ag-white)}
+.hdr .wrap{position:relative;display:flex;align-items:center;
+  gap:clamp(14px,1.6vw,22px)}
+.hdr__logo{display:flex;align-items:center;min-height:44px;flex:none}
+.hdr__logo img{height:32px;width:auto;object-fit:contain}
+.hdr__act{display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);flex:none;
+  margin-inline-start:auto}
+/* Plain text nav — no boxes, no rules. Hover is a hairline underline, the
+   same treatment the reference sites use. */
+.nav{display:flex;gap:clamp(10px,1.4vw,22px);font-size:14px;
+  font-family:var(--ui);letter-spacing:.02em;min-width:0}
+.nav a{display:flex;align-items:center;min-height:44px;padding:0 3px;
+  font-weight:700;opacity:.92;white-space:nowrap;transition:opacity .18s}
+.nav a:hover{opacity:1;box-shadow:inset 0 -1px var(--ag-white)}
+.tel{font-family:var(--ui);font-size:19px;letter-spacing:.03em;white-space:nowrap;
+  display:flex;align-items:center;min-height:44px}
+.tel small{display:block;font-size:11px;letter-spacing:.14em;opacity:.6;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:50px;padding:0 24px;font-size:16px;font-weight:500;border-radius:2px;
+  border:1px solid transparent;white-space:nowrap;transition:background .18s,color .18s}
+.btn--fill{background:var(--ag-white);color:var(--ag-ink)}
+.btn--fill:hover{background:#ddd}
+
+/* Moving-gradient border, requested for the header CTA specifically. CSS-only
+   (a rotating conic-gradient ring cut to just its outline via mask-composite)
+   rather than the React/framer-motion OriginKit component — same visual
+   result, no dependency, and it respects the site's existing
+   prefers-reduced-motion rule (animation:none) with no extra code. */
+@property --ag-glow-a{syntax:"<angle>";initial-value:0deg;inherits:false}
+.btn--glow{position:relative}
+.btn--glow::before{
+  content:"";position:absolute;inset:-4px;border-radius:6px;padding:2px;
+  background:conic-gradient(from var(--ag-glow-a),transparent 0deg,transparent 250deg,
+    var(--ag-red) 296deg,#ff8f6b 322deg,var(--ag-red) 348deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;animation:ag-glow-spin 3.4s linear infinite}
+@keyframes ag-glow-spin{to{--ag-glow-a:360deg}}
+.btn--line{border-color:rgba(255,255,255,.55);color:var(--ag-white)}
+.btn--line:hover{background:rgba(255,255,255,.12)}
+.btn--dark{background:var(--ag-ink);color:var(--ag-white)}
+.btn--dark:hover{background:#333}
+.btn--outdark{border-color:#bdbcb5;color:var(--ag-ink)}
+.btn--outdark:hover{background:rgba(0,0,0,.06)}
+.btn--sm{min-height:44px;font-size:15px;padding:0 18px}
+.burger{display:none}
+
+/* ---------- SNS ----------
+   Each mark carries its own brand colour, so the chips need a light base to sit
+   on: Threads is officially black and would disappear on the dark header. */
+.sns{display:flex;align-items:center;gap:9px}
+.sns__i{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;
+  transition:transform .18s,filter .18s}
+.sns__i svg{width:20px;height:20px;display:block}
+.sns__i:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.sns__i--instagram{color:#fff;
+  background:radial-gradient(circle at 28% 108%,#fdd85c 0%,#f7803c 24%,#e8215f 48%,#c32aa3 68%,#7d3ec9 100%)}
+.sns__i--threads{color:#000;background:#fff}
+.sns__i--line{color:#fff;background:#06c755}
+.sns--ft{margin-top:24px}
+
+/* ---------- hero ----------
+   Split composition. The photo panel keeps the source 4:3 ratio so no vehicle is
+   ever cut, and the black type panel continues the dark showroom wall that every
+   photo already has on its left. Measured crop: 0%.
+
+   Capped at the same --max as every other section: the hero source photos are
+   1920px native (that is what Instagram served, and no processing invents
+   sharper data than the file already has). Left uncapped, the photo panel grew
+   with the full viewport width, and past ~1650px of browser window it started
+   asking for more pixels than 1920px source can supply at a retina display —
+   confirmed by measurement (scripts/density.mjs) at 1920px viewport: density
+   0.78, a real, visible softening on any external monitor or large laptop
+   display. Capping to --max removes that ceiling entirely: the grid can never
+   render wider than what the source resolves crisply, on any screen. Because
+   <body> is already var(--ag-black), the cap is invisible — the letterboxing
+   on ultra-wide screens is the same black on both sides of the seam. */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,36fr) minmax(0,64fr);
+  max-width:var(--max);margin-inline:auto;
+  background:var(--ag-black);align-items:stretch}
+.hero__stage{position:relative;aspect-ratio:4/3;overflow:hidden;order:2}
+.hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.05s ease}
+.hero__slide[data-on]{opacity:1}
+.hero__slide picture,.hero__slide img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+/* Softens the seam between the black panel and the photo's own dark wall. */
+.hero__scrim{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(11,11,11,.92) 0%,rgba(11,11,11,.16) 15%,rgba(11,11,11,0) 34%)}
+.hero__in{order:1;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,5vh,64px) clamp(24px,3vw,44px) clamp(40px,5vh,64px) var(--pad);
+  min-height:0}
+.hero h1{font-size:clamp(38px,3.6vw,54px);letter-spacing:.02em;line-height:1.26}
+.hero__sub{margin-top:18px;font-size:16.5px;color:var(--ag-muted-d)}
+.hero__now{margin-top:26px;padding-top:16px;border-top:1px solid var(--ag-line-d);
+  font-size:14px;color:var(--ag-muted-d);font-family:var(--ui);letter-spacing:.04em}
+.hero__now b{display:block;font-family:var(--jp);font-size:17px;font-weight:500;
+  color:var(--ag-white);letter-spacing:.01em;margin-top:4px}
+.hero__cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+.hero__dots{margin-top:26px;display:flex;align-items:center;gap:6px}
+.dot{min-width:44px;height:44px;display:grid;place-items:center;background:none;border:0;
+  cursor:pointer;padding:0;font-family:var(--ui);font-size:12px;letter-spacing:.1em;
+  color:var(--ag-muted-d);border-bottom:2px solid rgba(255,255,255,.22)}
+.dot[aria-current="true"]{color:var(--ag-white);border-bottom-color:var(--ag-red)}
+
+/* ---------- quick bar ---------- */
+.quick{border-block:1px solid var(--ag-line-d);background:#0e0e0e}
+.quick .wrap{display:flex;align-items:center;gap:clamp(14px,2vw,32px);
+  padding-block:20px;flex-wrap:wrap}
+.quick__info{display:flex;flex-direction:column;gap:2px;font-size:15px;line-height:1.6}
+.quick__info b{font-weight:500}
+.quick__info span{color:var(--ag-muted-d);font-size:13.5px}
+.quick__acts{margin-inline-start:auto;display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- sections ---------- */
+.sec{padding-block:var(--gap-s)}
+.sec--paper{background:var(--ag-paper);color:var(--ag-ink)}
+.sec--paper .lead{color:#3f3f3b}
+.shead{display:flex;align-items:flex-end;gap:24px;margin-bottom:clamp(28px,3.4vw,46px)}
+/* The naming convention every credible dealer site in the benchmark set uses
+   (81GALLERY, BUDDICA): a small EN category word, then the JP noun at full
+   size. Functional nouns only — no invented stage names. */
+.kicker{display:flex;align-items:center;gap:10px;font-family:var(--ui);
+  font-size:13px;letter-spacing:.22em;color:var(--ag-muted-d);margin-bottom:10px}
+.kicker::before{content:"";width:18px;height:2px;background:var(--ag-red)}
+.sec--paper .kicker{color:#6b6b64}
+.shead h2{font-size:clamp(30px,2.9vw,42px)}
+.shead .lead{margin-top:10px;font-size:16px;color:var(--ag-muted-d);max-width:44em}
+/* .sec--paper .lead above loses to this on source order despite equal
+   specificity; pin it explicitly rather than depend on rule order. */
+.sec--paper .shead .lead{color:#3f3f3b}
+.shead__link{margin-inline-start:auto;font-size:15px;white-space:nowrap;
+  display:inline-flex;align-items:center;min-height:44px;gap:8px;
+  border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* collection: a horizontal rail at the source ratio. Every card is identical so
+   nothing mismatches in height; the variety on this page comes from the four
+   different photo layouts, not from unequal cards inside one of them. */
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:32%;
+  gap:clamp(14px,1.5vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;padding-bottom:4px}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{scroll-snap-align:start}
+.card{position:relative;display:block;background:#141414;overflow:hidden}
+.card picture{aspect-ratio:4/3;overflow:hidden}
+.card img{transition:transform .6s ease}
+.card:hover img{transform:scale(1.03)}
+.card__t{padding:15px 17px 19px}
+.card__t b{display:block;font-size:20px;font-weight:500;letter-spacing:.01em;
+  word-break:keep-all;overflow-wrap:normal}
+.card__t span{display:block;margin-top:5px;font-size:13.5px;color:var(--ag-muted-d)}
+
+/* gallery: uniform grid, every plate the same size and ratio. The earlier
+   asymmetric mosaic (two sizes, one row offset) read as inconsistent rather
+   than deliberate — a plain aligned grid is what the reference dealer sites
+   actually use for vehicle galleries. */
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(12px,1.4vw,20px)}
+.mosaic picture{aspect-ratio:4/3}
+.mcap{margin-top:9px;font-size:13px;color:var(--ag-muted-d)}
+
+/* showroom: 640x480 sources are never stretched past native width */
+.show{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
+  align-items:start}
+/* The lead photo carries the section at scale; the two 640px sources sit below in
+   a pair so neither is ever painted above its native resolution. */
+.show__pics{grid-column:span 6;display:grid;gap:clamp(12px,1.4vw,18px)}
+.show__pics picture{aspect-ratio:4/3}
+.show__pics .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.4vw,18px);
+  align-items:start}
+.show__txt{grid-column:8/span 5}
+.show__txt h2{font-size:clamp(28px,2.7vw,40px)}
+.show__txt p{margin-top:16px;font-size:17px;color:#3f3f3b;max-width:32em}
+.dl{margin-top:28px;border-top:1px solid var(--ag-line);font-size:16px}
+.dl div{display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--ag-line)}
+.dl dt{width:5.5em;flex:none;color:var(--ag-muted);font-size:14.5px;margin:0}
+.dl dd{margin:0}
+.show__cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* services: plain rows, the way the reference dealers lay theirs out —
+   category word, service name, one factual line. No invented stage names,
+   no numbered circles. Hierarchy comes from a 2-then-3 column rhythm. */
+.svc{margin-top:clamp(26px,3vw,42px)}
+.svc__row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.2vw,48px);
+  border-top:1px solid var(--ag-ink);padding-block:clamp(24px,2.8vw,36px)}
+.svc__row--3{grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ag-line)}
+.svc a{display:block}
+.svc__row b{display:block;font-size:clamp(21px,1.7vw,25px);font-weight:500;word-break:keep-all}
+.svc__row--3 b{font-size:18px}
+.svc__row p{margin-top:8px;font-size:15.5px;color:#3f3f3b;line-height:1.85}
+.svc__row--3 p{font-size:14.5px;color:#4a4a45}
+.svc a:hover b{box-shadow:inset 0 -1px var(--ag-ink)}
+/* Text and button sit as one left-aligned group, not pushed to opposite
+   edges: the statement is one short line, so margin-inline-start:auto here
+   left an 800px dead gap between them (same failure as the old header void —
+   an auto-margin stretched across content that's nowhere near wide enough
+   to justify it). Left-aligned with a normal gap reads as a single unit. */
+.svc__note{border-top:1px solid var(--ag-ink);padding-top:clamp(22px,2.6vw,32px);
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.svc__note b{font-size:clamp(19px,1.6vw,23px);font-weight:500;word-break:keep-all;display:block}
+.svc__note span{display:block;margin-top:6px;font-size:15px;color:#3f3f3b}
+
+/* ---------- scroll reveal ----------
+   Applied broadly (services stages, gallery mosaic, showroom, company, contact)
+   so the page arrives as the reader scrolls rather than sitting fully rendered
+   and static — the difference between a page that was composed and one that
+   was assembled. Off by default; JS below flips it on once IntersectionObserver
+   confirms JS actually ran, so content is never hidden from a no-JS visitor. */
+.js .reveal{opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.16,.8,.32,1),transform .7s cubic-bezier(.16,.8,.32,1)}
+.js .reveal.is-in{opacity:1;transform:translateY(0)}
+.svc__row.reveal:nth-child(2){transition-delay:.08s}
+.svc__note.reveal{transition-delay:.16s}
+.mosaic .reveal:nth-child(2){transition-delay:.08s}
+.mosaic .reveal:nth-child(3){transition-delay:.16s}
+.mosaic .reveal:nth-child(4){transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
+/* company teaser: type only */
+.co{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
+  align-items:start}
+.co__k{grid-column:span 5}
+.co__k h2{font-size:clamp(30px,3vw,44px)}
+.co__b{grid-column:span 7}
+.ag2{display:grid;gap:18px;margin-bottom:26px}
+.ag2 div{display:flex;gap:16px;align-items:baseline}
+.ag2 b{font-family:var(--ui);font-size:30px;font-weight:500;width:1.3em;flex:none;
+  color:var(--ag-ink)}
+.ag2 span{font-size:16.5px}
+.ag2 span em{font-style:normal;display:block;font-size:13px;letter-spacing:.13em;
+  color:var(--ag-muted);font-family:var(--ui);margin-bottom:2px}
+
+/* contact close */
+.cc{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
+  align-items:end}
+.cc__h{grid-column:span 6}
+.cc__h h2{font-size:clamp(28px,2.9vw,42px)}
+.cc__h p{margin-top:14px;color:var(--ag-muted-d);font-size:16px}
+.cc__a{grid-column:span 6;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
+/* footer */
+.ft{border-top:1px solid var(--ag-line-d);padding-block:56px 34px;font-size:15px}
+.ft__top{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,40px)}
+.ft__id{grid-column:span 5}
+.ft__id img{height:30px;width:auto;object-fit:contain;margin-bottom:20px}
+.ft__id address{font-style:normal;line-height:1.9;color:var(--ag-muted-d)}
+.ft__nav{grid-column:span 7;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ft__nav a{display:flex;align-items:center;padding:9px 0;color:var(--ag-muted-d);min-height:44px}
+.ft__nav a:hover{color:var(--ag-white)}
+.ft__bot{margin-top:44px;padding-top:20px;border-top:1px solid var(--ag-line-d);
+  display:flex;gap:20px;flex-wrap:wrap;color:var(--ag-muted-d);font-size:13px}
+.ft__bot a{border-bottom:1px solid rgba(255,255,255,.2)}
+
+.mbar{display:none}
+
+/* ---------- intro overlay ----------
+   Sits above the already-painted page and clears itself. No fixed wait: it ends
+   as soon as the mark has formed, and a hard stop caps it regardless. */
+#intro{position:fixed;inset:0;z-index:90;background:var(--ag-black);
+  opacity:1;transition:opacity .45s ease}
+#intro.is-out{opacity:0;pointer-events:none}
+#intro canvas{position:absolute;inset:0;display:block}
+@media (prefers-reduced-motion:reduce){#intro{display:none}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1400px){
+  .hdr .tel{display:none}
+}
+@media (max-width:1279px){
+  /* Measured fit boundary for the single-row header: with compact chips the
+     full row (logo + 8 chips + SNS + CTA, tel already hidden) fits at 1280px
+     and squeezes below it, so the hamburger takes over there. */
+  .nav,.hdr__act .btn,.hdr__act .tel{display:none}
+  .burger{display:grid;place-items:center;width:44px;height:44px;
+    background:none;border:1px solid rgba(255,255,255,.4);border-radius:2px;cursor:pointer}
+  .burger i{display:block;width:19px;height:1.5px;background:#fff;box-shadow:0 6px #fff,0 -6px #fff}
+  .hero{grid-template-columns:1fr}
+  .hero__stage{order:1}
+  .hero__in{order:2;padding:clamp(26px,4vh,40px) var(--pad) clamp(30px,4vh,44px)}
+  .hdr{padding-block:14px}
+  .hero__scrim{background:linear-gradient(180deg,rgba(11,11,11,.5) 0%,rgba(11,11,11,0) 34%)}
+  .show__pics,.show__txt,.co__k,.co__b,.cc__h,.cc__a,
+  .ft__id,.ft__nav{grid-column:1/-1}
+  .cc__a{justify-content:flex-start}
+  .rail{grid-auto-columns:46%}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .hero h1{font-size:38px;line-height:1.28}
+  .hero__cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero__cta .btn{width:100%}
+  .sns{gap:7px}
+  .sns__i svg{width:19px;height:19px}
+  .quick .wrap{flex-direction:column;align-items:stretch}
+  .quick__acts{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .quick__acts .btn{width:100%}
+  .shead{flex-direction:column;align-items:stretch;gap:12px}
+  .shead__link{margin:0}
+  .rail{grid-auto-columns:78%;margin-inline:calc(var(--pad)*-1);
+    padding-inline:var(--pad);scroll-padding-inline:var(--pad)}
+  .mosaic{gap:10px}
+  .mosaic{grid-template-columns:repeat(2,1fr)}
+  /* kept at 2-up: stacking would paint these 640px sources at 354 CSS px */
+  .svc__row,.svc__row--3{grid-template-columns:1fr;gap:20px}
+  .svc__note{align-items:flex-start}
+  .svc__note .btn{margin:14px 0 0;width:100%}
+  .ft__nav{grid-template-columns:1fr 1fr}
+  body{padding-bottom:78px}
+  .mbar{display:grid;position:fixed;inset:auto 0 0;z-index:60;
+    grid-template-columns:1fr 1fr;gap:1px;background:#2a2a2a;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .mbar a{display:flex;align-items:center;justify-content:center;gap:8px;
+    min-height:58px;background:var(--ag-ink);color:#fff;font-size:16px;font-weight:500}
+  .mbar a.pri{background:var(--ag-white);color:var(--ag-ink)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* ---------- sub-page chrome ---------- */
+.page{background:var(--ag-paper);color:var(--ag-ink)}
+.phero{background:var(--ag-black);color:var(--ag-white);
+  padding:clamp(40px,6vw,84px) 0 clamp(36px,5vw,72px)}
+.phero h1{font-size:clamp(34px,3.4vw,50px)}
+.phero .lead{margin-top:14px;font-size:16.5px;color:var(--ag-muted-d);max-width:44em}
+.pbody{padding-block:clamp(48px,6vw,88px)}
+.pbody h2{font-size:clamp(24px,2.2vw,32px);margin-bottom:18px}
+.pbody section+section{margin-top:clamp(48px,6vw,80px)}
+.prose p{font-size:16.5px;line-height:2;color:#3f3f3b;max-width:44em}
+.prose p+p{margin-top:14px}
+
+/* nav: current page chip */
+.nav a[aria-current="page"]{opacity:1;box-shadow:inset 0 -2px var(--ag-red)}
+
+/* info table (company / access) */
+.tbl{border-top:1px solid var(--ag-line);max-width:760px}
+.tbl div{display:flex;gap:20px;padding:15px 0;border-bottom:1px solid var(--ag-line)}
+.tbl dt{width:9em;flex:none;color:var(--ag-muted);font-size:14.5px;margin:0;padding-top:2px}
+.tbl dd{margin:0;font-size:16px;line-height:1.9}
+
+/* vehicle / gallery grids */
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,20px)}
+.vgrid figure{margin:0}
+.vgrid picture{aspect-ratio:4/3;display:block}
+.vgrid figcaption{margin-top:8px;font-size:13.5px;color:#4a4a45}
+.vgrid button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+@media (max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+
+/* category blocks (vehicles page) */
+.cat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:clamp(20px,3vw,44px);align-items:start;padding-block:clamp(26px,3vw,40px);
+  border-top:1px solid var(--ag-line)}
+.cat:first-of-type{border-top:1px solid var(--ag-ink)}
+.cat h3{font-size:clamp(20px,1.8vw,25px);font-weight:500;margin:0 0 4px}
+.cat .en{font-family:var(--ui);font-size:12.5px;letter-spacing:.18em;color:var(--ag-muted)}
+.cat p{margin-top:10px;font-size:15.5px;line-height:1.95;color:#3f3f3b}
+.cat picture{aspect-ratio:16/9;display:block}
+@media (max-width:900px){.cat{grid-template-columns:1fr}}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:80;background:rgba(8,8,8,.93);display:none;
+  align-items:center;justify-content:center;padding:4vw;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:88vh;object-fit:contain}
+#lb figcaption{position:absolute;left:0;right:0;bottom:18px;text-align:center;
+  color:#fff;font-size:14px}
+
+/* forms (contact / recruit) — follows carbooth.site/contact: a centered page
+   title on the black band, then label-left / input-right rows separated by
+   dashed rules, with a red required badge. */
+.phero--center{text-align:center}
+.phero--center h1{display:inline-block;padding-bottom:14px;
+  border-bottom:2px solid var(--ag-white)}
+.phero--center .kicker{justify-content:center}
+.phero--center .kicker::before{display:none}
+.crumb{font-size:12.5px;color:var(--ag-muted-d);margin-bottom:26px;text-align:left}
+.crumb a{text-decoration:underline}
+.form{max-width:880px;margin-inline:auto}
+.frow{display:grid;grid-template-columns:250px minmax(0,1fr);gap:10px 26px;
+  align-items:start;padding-block:22px;border-bottom:1px dashed #b9b8b1}
+.frow:first-of-type{border-top:1px dashed #b9b8b1}
+.frow>label{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;
+  padding-top:12px}
+.req{background:var(--ag-red);color:#fff;font-size:12px;padding:2px 7px;border-radius:2px;
+  flex:none}
+.frow input,.frow textarea,.frow select{width:100%;max-width:440px;min-height:48px;
+  padding:11px 13px;border:1px solid #b3b2ab;border-radius:2px;font:inherit;font-size:16px;
+  background:var(--ag-white);color:var(--ag-ink)}
+.frow textarea{max-width:none;min-height:180px;resize:vertical}
+.frow select{max-width:280px}
+.frow .hint{display:block;margin-top:7px;font-size:13px;color:#65655f}
+.frow input:focus,.frow textarea:focus,.frow select:focus{
+  outline:2px solid var(--ag-ink);border-color:var(--ag-ink)}
+.f-note{font-size:13.5px;color:#65655f;margin:26px 0 20px;line-height:1.8;text-align:center}
+.f-err{display:none;color:var(--ag-red);font-size:14px;margin-bottom:16px;text-align:center}
+.f-err.on{display:block}
+.f-submit{text-align:center;margin-top:6px}
+@media (max-width:760px){
+  .frow{grid-template-columns:1fr;gap:8px}
+  .frow>label{padding-top:0}
+  .frow input,.frow select{max-width:none}
+}
+
+/* company page — alternating black/paper bands. The origin band carries a
+   canvas starfield (vanilla port of the GlitterWrap warp field: white stars
+   streaking outward with glitter flashes) behind much larger A/G lockup
+   typography. Copy is the user-fixed wording. */
+.co-origin{position:relative;background:var(--ag-black);color:var(--ag-white);
+  padding-block:clamp(80px,9vw,140px);overflow:hidden}
+.co-origin canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.co-origin .wrap{position:relative;z-index:1}
+.co-origin__title{text-align:center;margin-bottom:clamp(40px,5vw,72px)}
+.co-origin__title .kicker{justify-content:center;margin-bottom:12px}
+.co-origin__title h2{font-size:clamp(26px,2.6vw,38px);font-weight:700;
+  letter-spacing:.04em}
+.co-origin__grid{display:grid;grid-template-columns:1fr auto 1fr;
+  gap:clamp(20px,4vw,64px);align-items:center;max-width:1080px;margin-inline:auto;
+  text-align:center}
+.co-origin__x{font-family:var(--ui);font-size:clamp(30px,3vw,46px);
+  color:var(--ag-muted-d)}
+.co-origin__cell b{display:block;font-family:var(--ui);font-weight:700;
+  font-size:clamp(120px,15vw,220px);line-height:1;letter-spacing:-.02em;
+  color:var(--ag-white);text-shadow:0 0 60px rgba(255,255,255,.45)}
+.co-origin__cell b i{font-style:normal;color:var(--ag-red);
+  text-shadow:0 0 60px rgba(213,17,42,.45)}
+.co-origin__cell em{font-style:normal;display:block;margin-top:18px;
+  font-family:var(--ui);font-size:clamp(13px,1.2vw,16px);letter-spacing:.34em;
+  color:var(--ag-muted-d)}
+.co-origin__cell strong{display:block;margin-top:8px;
+  font-size:clamp(22px,2.2vw,30px);font-weight:700}
+.co-origin__lead{margin-top:clamp(48px,5.5vw,80px);text-align:center;
+  font-size:clamp(17px,1.6vw,22px);line-height:2.1}
+.co-ci{counter-reset:ci}
+.co-ci__item{display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(18px,2.4vw,36px);align-items:baseline;
+  padding-block:clamp(26px,3vw,40px);border-bottom:1px solid var(--ag-line)}
+.co-ci__item:first-child{border-top:1px solid var(--ag-ink)}
+.co-ci__n{font-family:var(--ui);font-size:clamp(28px,2.8vw,40px);font-weight:500;
+  color:var(--ag-red);min-width:2.1em}
+.co-ci__t{font-size:clamp(20px,2vw,28px);font-weight:500;line-height:1.7;
+  word-break:keep-all}
+.co-ceo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:clamp(28px,4vw,72px);align-items:start}
+.co-ceo__id .kicker{margin-bottom:16px;color:var(--ag-ink);font-weight:700}
+.co-ceo__id b{display:block;font-size:clamp(30px,3vw,44px);font-weight:500;
+  line-height:1.3}
+.co-ceo__id span{display:block;margin-top:8px;font-size:15px;color:#65655f}
+.co-tl{border-inline-start:2px solid var(--ag-ink);padding-inline-start:clamp(22px,2.6vw,36px);
+  display:grid;gap:clamp(22px,2.6vw,34px)}
+.co-tl div{position:relative}
+.co-tl div::before{content:"";position:absolute;
+  inset-inline-start:calc(clamp(22px,2.6vw,36px)*-1 - 6px);top:9px;width:10px;height:10px;
+  border-radius:50%;background:var(--ag-ink)}
+.co-tl b{display:block;font-size:17.5px;font-weight:500}
+.co-tl span{display:block;margin-top:4px;font-size:14.5px;color:#65655f}
+/* lounge band: the sofa source is 640px native — shown centred at native width
+   on paper rather than stretched full-bleed (which would soften it badly). */
+.co-band{background:var(--ag-paper);padding-block:clamp(8px,1vw,16px)}
+.co-band__in{max-width:640px;margin-inline:auto;padding-inline:var(--pad)}
+.co-band picture{aspect-ratio:4/3}
+.co-band picture img{width:100%;height:100%;object-fit:cover;display:block}
+.co-band figcaption{margin-top:10px;font-size:13.5px;color:#65655f;text-align:center}
+.co-fact{display:grid;grid-template-columns:minmax(0,1fr);max-width:920px;
+  margin-inline:auto}
+.co-fact .tbl{max-width:none}
+.co-fact .tbl div{grid-template-columns:180px minmax(0,1fr);padding-block:18px}
+@media (max-width:860px){
+  .co-origin__grid{grid-template-columns:1fr;gap:26px}
+  .co-origin__x{transform:rotate(90deg)}
+  .co-ceo{grid-template-columns:1fr}
+}
+
+/* recruit page */
+.r-msg{max-width:44em}
+.r-msg .big{font-size:clamp(22px,2.2vw,30px);font-weight:500;line-height:1.7;margin-bottom:18px}
+.r-entry{border-top:1px solid var(--ag-ink);margin-top:clamp(40px,5vw,64px);
+  padding-top:clamp(28px,3.4vw,44px)}
+
+/* news empty state */
+.n-empty{border:1px solid var(--ag-line);padding:clamp(30px,4vw,52px);text-align:center;
+  color:#4a4a45;font-size:16px;background:var(--ag-white)}
+
+/* stock page CTA panel */
+.s-cta{background:var(--ag-black);color:var(--ag-white);
+  padding:clamp(28px,3.6vw,48px);display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.s-cta b{display:block;font-size:clamp(20px,1.9vw,26px);font-weight:500}
+.s-cta span{display:block;margin-top:8px;font-size:15px;color:var(--ag-muted-d)}
+.s-cta .btn{margin-inline-start:auto}
+@media (max-width:760px){.s-cta .btn{margin:14px 0 0;width:100%}}
+</style>
+<script>document.documentElement.className+=" js"</script>
+<body class="page">
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="hdr__logo" href="/"><img src="/images/brand/ag-logo-light.png" width="875" height="348" alt="株式会社A&amp;G"></a>
+    <nav class="nav"><a href="/stock">在庫車両</a><a href="/vehicles">取扱車種</a><a href="/services">サービス</a><a href="/gallery">ギャラリー</a><a href="/company" aria-current="page">会社概要</a><a href="/recruit">採用情報</a><a href="/access">店舗情報</a><a href="/contact">お問い合わせ</a></nav>
+    <div class="hdr__act">
+      <div class="sns "><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
+      <a class="tel" href="tel:0667604158"><span><small>TEL 10:00—18:00</small>06-6760-4158</span></a>
+      <a class="btn btn--fill btn--sm btn--glow" href="/stock">在庫車両を見る</a>
+      <button class="burger" aria-label="メニューを開く"><i></i></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="phero"><div class="wrap">
+  <p class="kicker">COMPANY</p><h1>会社案内</h1>
+</div></div>
+<section class="co-origin">
+  <canvas aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="co-origin__title">
+      <p class="kicker">ORIGIN</p>
+      <h2>社名の由来</h2>
+    </div>
+    <div class="co-origin__grid">
+      <div class="co-origin__cell">
+        <b><i>A</i></b>
+        <em>AMBITION</em>
+        <strong>志</strong>
+      </div>
+      <div class="co-origin__x">×</div>
+      <div class="co-origin__cell">
+        <b>G</b>
+        <em>GRATEFUL</em>
+        <strong>恩義・感謝</strong>
+      </div>
+    </div>
+    <p class="co-origin__lead">志高く、周りの人や環境に恩義、感謝を忘れず共に成長する。<br>それが社名に込めた意味です。</p>
+  </div>
+</section>
+<script>
+(function(){
+  // Vanilla port of the OriginKit StarBurst: spokes of light radiating from a
+  // focal point at bottom-centre, streak pulses travelling outward, with a
+  // soft bloom at the origin. Seeded PRNG so the pattern is stable per load.
+  var host=document.querySelector('.co-origin');
+  if(!host)return;
+  var cv=host.querySelector('canvas');
+  var ctx=cv.getContext('2d');
+  if(!ctx)return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Originkit preset: speed 4, 76 spokes, #BB3434, centerX 56%, size 8,
+  // opacity 59, flower 0 (no bloom).
+  var SPEED=0.4, N_SPOKES=76, PER=15, SIZE=0.4, OPACITY=0.59,
+      FLOWER=0, TWINKLE=0.2, CX=0.56, CY=1.0, BG='rgb(11,11,11)',
+      CR=187, CG=52, CB=52;
+
+  var seed=0xbadf00d>>>0;
+  function rng(){
+    seed=(seed+0x6d2b79f5)>>>0;
+    var t=seed;
+    t=Math.imul(t^(t>>>15),t|1);
+    t^=t+Math.imul(t^(t>>>7),t|61);
+    return ((t^(t>>>14))>>>0)/4294967296;
+  }
+
+  var dpr=Math.min(devicePixelRatio||1,2), W=0, H=0;
+  function size(){
+    W=host.clientWidth; H=host.clientHeight;
+    cv.width=W*dpr; cv.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  size();
+  new ResizeObserver(size).observe(host);
+
+  var cosA=new Float32Array(N_SPOKES), sinA=new Float32Array(N_SPOKES);
+  for(var i=0;i<N_SPOKES;i++){
+    var a=(i/N_SPOKES)*Math.PI*2+(rng()-0.5)*0.02;
+    cosA[i]=Math.cos(a); sinA[i]=Math.sin(a);
+  }
+  var COUNT=N_SPOKES*PER;
+  var pSp=new Uint16Array(COUNT), pT=new Float32Array(COUNT),
+      pV=new Float32Array(COUNT), pS=new Float32Array(COUNT),
+      pP=new Float32Array(COUNT);
+  for(var i=0;i<COUNT;i++){
+    pSp[i]=i%N_SPOKES;
+    pT[i]=-0.05+rng()*1.1;
+    pV[i]=(0.5+rng())*0.25;
+    pS[i]=0.7+rng()*0.8;
+    pP[i]=rng()*Math.PI*2;
+  }
+
+  // Pre-baked streak sprite: transparent tail -> bright head.
+  var streak=document.createElement('canvas');
+  streak.width=64; streak.height=2;
+  var sctx=streak.getContext('2d');
+  var g=sctx.createLinearGradient(0,0,64,0);
+  g.addColorStop(0,'rgba('+CR+','+CG+','+CB+',0)');
+  g.addColorStop(0.7,'rgba('+CR+','+CG+','+CB+',0.6)');
+  g.addColorStop(1,'rgba('+CR+','+CG+','+CB+',1)');
+  sctx.fillStyle=g; sctx.fillRect(0,0,64,2);
+
+  var timeSec=0;
+  function frame(deltaSec){
+    var dt=Math.max(.001,Math.min(.05,deltaSec));
+    timeSec+=dt;
+    if(W<2||H<2)return;
+    var cx=CX*W, cy=CY*H, R=Math.sqrt(W*W+H*H);
+    ctx.globalCompositeOperation='source-over';
+    ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='lighter';
+
+    // origin bloom (disabled in this preset when FLOWER is 0)
+    if(FLOWER>0){
+      var minDim=Math.min(W,H);
+      var bloomR=Math.max(8,minDim*0.18*(FLOWER*0.5+0.5)*(0.6+SIZE*0.4));
+      var ba=Math.min(1,FLOWER*OPACITY);
+      var fg=ctx.createRadialGradient(cx,cy,0,cx,cy,bloomR);
+      fg.addColorStop(0,'rgba('+CR+','+CG+','+CB+','+ba+')');
+      fg.addColorStop(0.3,'rgba('+CR+','+CG+','+CB+','+(ba*0.5)+')');
+      fg.addColorStop(0.7,'rgba('+CR+','+CG+','+CB+','+(ba*0.15)+')');
+      fg.addColorStop(1,'rgba('+CR+','+CG+','+CB+',0)');
+      ctx.fillStyle=fg;
+      ctx.fillRect(cx-bloomR,cy-bloomR,bloomR*2,bloomR*2);
+    }
+
+    for(var i=0;i<COUNT;i++){
+      pT[i]+=pV[i]*SPEED*dt;
+      if(pT[i]>1.1){
+        pT[i]=-0.05-rng()*0.05;
+        pS[i]=0.7+rng()*0.8;
+        pP[i]=rng()*Math.PI*2;
+      }
+      var t=pT[i];
+      if(t<0||t>=1)continue;
+      var tw=0.7+0.3*Math.sin(timeSec*TWINKLE*6+pP[i]);
+      var fade=t<0.06?t/0.06:(t<0.85?1:1-(t-0.85)/0.15);
+      var al=Math.min(1,tw*fade*(1+0.5*t)*OPACITY);
+      if(al<0.005)continue;
+      var d=t*R, si=pSp[i], ca=cosA[si], sa=sinA[si];
+      var px=cx+ca*d, py=cy+sa*d;
+      var len=(8+12*(pV[i]/0.25))*(0.7+0.6*pS[i]*SIZE);
+      ctx.setTransform(dpr*ca,dpr*sa,-dpr*sa,dpr*ca,dpr*px,dpr*py);
+      ctx.globalAlpha=al;
+      ctx.drawImage(streak,-len,-0.5,len,1);
+    }
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.globalAlpha=1;
+  }
+
+  if(reduce){
+    for(var k=0;k<60;k++)frame(1/60);
+    return;
+  }
+  var last=performance.now();
+  (function loop(t){
+    frame((t-last)/1000); last=t;
+    requestAnimationFrame(loop);
+  })(last);
+})();
+</script>
+<div class="pbody"><div class="wrap">
+  <section>
+    <h2>Corporate Identity</h2>
+    <div class="co-ci">
+      <div class="co-ci__item"><span class="co-ci__n">01</span>
+        <p class="co-ci__t">最短最速で成長する</p></div>
+      <div class="co-ci__item"><span class="co-ci__n">02</span>
+        <p class="co-ci__t">若い世代が自らの意見をしっかり述べ、<wbr>責任を持ち常に挑戦できる会社にする</p></div>
+    </div>
+  </section>
+  <section>
+    <div class="co-ceo">
+      <div class="co-ceo__id">
+        <p class="kicker">FOUNDER</p>
+        <b>新崎 星輝</b>
+        <span>代表取締役 ／ SEIKI SHINZAKI</span>
+      </div>
+      <div class="co-tl">
+        <div><b>株式会社ヤナセ 新卒入社</b>
+          <span>ヤナセ新人賞、MBJ（メルセデス・ベンツ・ジャパン）新人賞を受賞</span></div>
+        <div><b>大手中古車販売会社</b>
+          <span>約3年の経験を積む</span></div>
+        <div><b>株式会社A&amp;G 設立</b>
+          <span>2024年1月</span></div>
+      </div>
+    </div>
+  </section>
+</div></div>
+<div class="co-band">
+  <figure class="co-band__in" style="margin:0">
+    <picture class=""><source type="image/avif" srcset="/images/gallery/ag-showroom-lounge-01-640.avif 640w" sizes="(max-width:760px) 100vw, 640px"><source type="image/webp" srcset="/images/gallery/ag-showroom-lounge-01-640.webp 640w" sizes="(max-width:760px) 100vw, 640px"><img src="/images/gallery/ag-showroom-lounge-01-640.jpg" width="640" height="480" alt="A&Gの商談スペース。2台のソファとガラステーブル" loading="lazy" decoding="async"></picture>
+    <figcaption>商談スペース</figcaption>
+  </figure>
+</div>
+<div class="pbody"><div class="wrap">
+  <section style="margin-top:0">
+    <h2 style="text-align:center">会社概要</h2>
+    <div class="co-fact">
+      <dl class="tbl">
+        <div><dt>会社名</dt><dd>株式会社A&amp;G</dd></div>
+        <div><dt>代表者</dt><dd>代表取締役　新崎 星輝</dd></div>
+        <div><dt>設立</dt><dd>2024年1月</dd></div>
+        <div><dt>所在地</dt><dd>〒551-0023 大阪府大阪市大正区鶴町1-13-23</dd></div>
+        <div><dt>TEL</dt><dd>06-6760-4158</dd></div>
+        <div><dt>FAX</dt><dd>06-6760-4159</dd></div>
+        <div><dt>営業時間</dt><dd>10:00—18:00（月曜定休）</dd></div>
+        <div><dt>事業内容</dt><dd>新車・中古車販売／車両買取／オートローン／自動車保険代理業／整備・板金</dd></div>
+      </dl>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap">
+      <a class="btn btn--dark" href="/access/">店舗情報・アクセス</a>
+      <a class="btn btn--outdark" href="/recruit/">採用情報</a>
+    </div>
+  </section>
+</div></div>
+</main>
+
+<footer class="ft" style="background:var(--ag-black);color:var(--ag-white)">
+  <div class="wrap">
+    <div class="ft__top">
+      <div class="ft__id">
+        <img src="/images/brand/ag-logo-light.png" width="875" height="348" alt="株式会社A&amp;G">
+        <address>
+          〒551-0023 大阪府大阪市大正区鶴町1-13-23<br>
+          TEL 06-6760-4158 ／ FAX 06-6760-4159<br>
+          営業時間 10:00—18:00 ／ 月曜定休
+        </address>
+        <div class="sns sns--ft"><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
+      </div>
+      <nav class="ft__nav"><a href="/stock">在庫車両</a><a href="/vehicles">取扱車種</a><a href="/services">サービス</a><a href="/gallery">ギャラリー</a><a href="/company">会社概要</a><a href="/recruit">採用情報</a><a href="/access">店舗情報</a><a href="/contact">お問い合わせ</a><a href="/news">お知らせ</a><a href="/privacy">プライバシーポリシー</a><a href="https://www.carsensor.net/shop/osaka/327843001/stocklist/">カーセンサー</a></nav>
+    </div>
+    <div class="ft__bot"><span>© 2026 株式会社A&amp;G</span></div>
+  </div>
+</footer>
+
+<nav class="mbar">
+  <a class="pri" href="tel:0667604158">電話する</a>
+  <a href="/contact">お問い合わせ</a>
+</nav>
+
+
+</body>
+</html>
