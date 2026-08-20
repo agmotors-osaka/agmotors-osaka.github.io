@@ -121,6 +121,12 @@ html,body{overflow-x:clip}
 .rvl--light{background:var(--ag-white);border-color:var(--ag-white);color:var(--ag-ink)}
 .rvl--light:hover,.rvl--light:focus-visible{background:var(--ag-ink);color:#fff;
   border-color:rgba(255,255,255,.38)}
+/* plain pill: no badge disc — centred label with an inline arrow. Used
+   where several badge buttons would stack red circles too densely. */
+.rvl--plain{justify-content:center;gap:10px;padding:6px 24px}
+.rvl--plain::after{content:"\2192";font-family:var(--ui);font-size:15px;
+  transition:transform .25s}
+.rvl--plain:hover::after{transform:translateX(4px)}
 /* secondary on paper background: outline pill */
 .rvl--line{background:transparent;border-color:#bdbcb5;color:var(--ag-ink)}
 .rvl--line:hover,.rvl--line:focus-visible{background:var(--ag-ink);color:#fff;
@@ -461,8 +467,8 @@ body.menu-open{overflow:hidden}
     <h1>理想の一台と<wbr>出会う場所</h1>
     <p class="hero__sub">大阪市大正区。<wbr>輸入車・国産車の販売・買取</p>
     <div class="hero__cta">
-      <a class="rvl rvl--light" href="/stock"><span class="rvl__t">在庫車両を見る</span><span class="rvl__badge" aria-hidden="true">→</span></a>
-      <a class="rvl" href="/contact"><span class="rvl__t">来店のご相談</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl rvl--light rvl--plain" href="/stock"><span class="rvl__t">在庫車両を見る</span></a>
+      <a class="rvl rvl--plain" href="/contact"><span class="rvl__t">来店のご相談</span></a>
     </div>
   </div>
 </section>
