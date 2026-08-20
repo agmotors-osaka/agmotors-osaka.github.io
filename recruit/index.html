@@ -62,9 +62,17 @@ p{margin:0}
 .tel{font-family:var(--ui);font-size:19px;letter-spacing:.03em;white-space:nowrap;
   display:flex;align-items:center;min-height:44px}
 .tel small{display:block;font-size:11px;letter-spacing:.14em;opacity:.6;font-weight:500}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  min-height:50px;padding:0 24px;font-size:16px;font-weight:500;border-radius:2px;
-  border:1px solid transparent;white-space:nowrap;transition:background .18s,color .18s}
+/* Label left, arrow right — the closing affordance premium dealer sites use.
+   The arrow is generated here so no template carries a literal "→". */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;
+  min-height:54px;padding:0 24px;font-size:15px;font-weight:500;letter-spacing:.04em;
+  border-radius:2px;border:1px solid transparent;white-space:nowrap;
+  transition:background .18s,color .18s,border-color .18s}
+.btn::after{content:"→";font-family:var(--ui);font-size:15px;flex:none;
+  transition:transform .25s}
+.btn:hover::after{transform:translateX(5px)}
+.btn--noarw{justify-content:center;gap:9px}
+.btn--noarw::after{content:none}
 .btn--fill{background:var(--ag-white);color:var(--ag-ink)}
 .btn--fill:hover{background:#ddd}
 
@@ -222,28 +230,28 @@ p{margin:0}
 .dl dd{margin:0}
 .show__cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
 
-/* services: plain rows, the way the reference dealers lay theirs out —
-   category word, service name, one factual line. No invented stage names,
-   no numbered circles. Hierarchy comes from a 2-then-3 column rhythm. */
-.svc{margin-top:clamp(26px,3vw,42px)}
-.svc__row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.2vw,48px);
-  border-top:1px solid var(--ag-ink);padding-block:clamp(24px,2.8vw,36px)}
-.svc__row--3{grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ag-line)}
-.svc a{display:block}
-.svc__row b{display:block;font-size:clamp(21px,1.7vw,25px);font-weight:500;word-break:keep-all}
-.svc__row--3 b{font-size:18px}
-.svc__row p{margin-top:8px;font-size:15.5px;color:#3f3f3b;line-height:1.85}
-.svc__row--3 p{font-size:14.5px;color:#4a4a45}
-.svc a:hover b{box-shadow:inset 0 -1px var(--ag-ink)}
-/* Text and button sit as one left-aligned group, not pushed to opposite
-   edges: the statement is one short line, so margin-inline-start:auto here
-   left an 800px dead gap between them (same failure as the old header void —
-   an auto-margin stretched across content that's nowhere near wide enough
-   to justify it). Left-aligned with a normal gap reads as a single unit. */
-.svc__note{border-top:1px solid var(--ag-ink);padding-top:clamp(22px,2.6vw,32px);
-  display:flex;align-items:center;gap:28px;flex-wrap:wrap}
-.svc__note b{font-size:clamp(19px,1.6vw,23px);font-weight:500;word-break:keep-all;display:block}
-.svc__note span{display:block;margin-top:6px;font-size:15px;color:#3f3f3b}
+/* services: card grid. Six equal cells — five services plus a dark closing
+   card that carries the link to the full page — so the block reads as one
+   composed unit instead of hairline rows that run together. Cards set their
+   own display:flex; no bare display:block override that would break the
+   button centering the old .svc a rule caused. */
+.svcg{margin-top:clamp(26px,3vw,42px);display:grid;
+  grid-template-columns:repeat(3,1fr);gap:14px}
+.svcg__c{display:flex;flex-direction:column;gap:10px;background:var(--ag-white);
+  border:1px solid var(--ag-line);padding:clamp(24px,2.6vw,34px);
+  transition:border-color .2s,transform .2s}
+.svcg__c:hover{border-color:var(--ag-ink);transform:translateY(-2px)}
+.svcg__en{font-family:var(--ui);font-size:12px;letter-spacing:.18em;
+  color:var(--ag-muted);display:flex;align-items:center;gap:8px}
+.svcg__en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
+.svcg__c b{font-size:clamp(18px,1.5vw,21px);font-weight:500;word-break:keep-all}
+.svcg__c p{font-size:14.5px;color:#4a4a45;line-height:1.8}
+.svcg__c--dark{background:var(--ag-ink);border-color:var(--ag-ink);color:var(--ag-white)}
+.svcg__c--dark p{color:var(--ag-muted-d)}
+.svcg__c--dark:hover{border-color:var(--ag-ink);background:#222}
+.svcg__more{margin-top:auto;padding-top:14px;font-size:14px;letter-spacing:.06em;
+  display:flex;align-items:center;gap:8px}
+.svcg__more::after{content:"→";font-family:var(--ui)}
 
 /* ---------- scroll reveal ----------
    Applied broadly (services stages, gallery mosaic, showroom, company, contact)
@@ -254,26 +262,15 @@ p{margin:0}
 .js .reveal{opacity:0;transform:translateY(22px);
   transition:opacity .7s cubic-bezier(.16,.8,.32,1),transform .7s cubic-bezier(.16,.8,.32,1)}
 .js .reveal.is-in{opacity:1;transform:translateY(0)}
-.svc__row.reveal:nth-child(2){transition-delay:.08s}
-.svc__note.reveal{transition-delay:.16s}
+.svcg__c.reveal:nth-child(2){transition-delay:.06s}
+.svcg__c.reveal:nth-child(3){transition-delay:.12s}
+.svcg__c.reveal:nth-child(4){transition-delay:.06s}
+.svcg__c.reveal:nth-child(5){transition-delay:.12s}
+.svcg__c.reveal:nth-child(6){transition-delay:.18s}
 .mosaic .reveal:nth-child(2){transition-delay:.08s}
 .mosaic .reveal:nth-child(3){transition-delay:.16s}
 .mosaic .reveal:nth-child(4){transition-delay:.24s}
 @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
-
-/* company teaser: type only */
-.co{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
-  align-items:start}
-.co__k{grid-column:span 5}
-.co__k h2{font-size:clamp(30px,3vw,44px)}
-.co__b{grid-column:span 7}
-.ag2{display:grid;gap:18px;margin-bottom:26px}
-.ag2 div{display:flex;gap:16px;align-items:baseline}
-.ag2 b{font-family:var(--ui);font-size:30px;font-weight:500;width:1.3em;flex:none;
-  color:var(--ag-ink)}
-.ag2 span{font-size:16.5px}
-.ag2 span em{font-style:normal;display:block;font-size:13px;letter-spacing:.13em;
-  color:var(--ag-muted);font-family:var(--ui);margin-bottom:2px}
 
 /* contact close */
 .cc{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
@@ -330,9 +327,10 @@ p{margin:0}
   .hero__in{order:2;padding:clamp(26px,4vh,40px) var(--pad) clamp(30px,4vh,44px)}
   .hdr{padding-block:14px}
   .hero__scrim{background:linear-gradient(180deg,rgba(11,11,11,.5) 0%,rgba(11,11,11,0) 34%)}
-  .show__pics,.show__txt,.co__k,.co__b,.cc__h,.cc__a,
+  .show__pics,.show__txt,.cc__h,.cc__a,
   .ft__id,.ft__nav{grid-column:1/-1}
   .cc__a{justify-content:flex-start}
+  .svcg{grid-template-columns:repeat(2,1fr)}
   .rail{grid-auto-columns:46%}
 }
 @media (max-width:760px){
@@ -352,9 +350,7 @@ p{margin:0}
   .mosaic{gap:10px}
   .mosaic{grid-template-columns:repeat(2,1fr)}
   /* kept at 2-up: stacking would paint these 640px sources at 354 CSS px */
-  .svc__row,.svc__row--3{grid-template-columns:1fr;gap:20px}
-  .svc__note{align-items:flex-start}
-  .svc__note .btn{margin:14px 0 0;width:100%}
+  .svcg{grid-template-columns:1fr;gap:10px}
   .ft__nav{grid-template-columns:1fr 1fr}
   body{padding-bottom:78px}
   .mbar{display:grid;position:fixed;inset:auto 0 0;z-index:60;
@@ -538,6 +534,40 @@ p{margin:0}
 .s-cta span{display:block;margin-top:8px;font-size:15px;color:var(--ag-muted-d)}
 .s-cta .btn{margin-inline-start:auto}
 @media (max-width:760px){.s-cta .btn{margin:14px 0 0;width:100%}}
+
+/* services page: card grid (same system as the home services cards) */
+.sv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.sv-card{background:var(--ag-white);border:1px solid var(--ag-line);
+  padding:clamp(28px,3.2vw,44px);position:relative}
+.sv-card .no{position:absolute;top:clamp(24px,2.6vw,36px);right:clamp(24px,2.6vw,36px);
+  font-family:var(--ui);font-size:13px;letter-spacing:.12em;color:var(--ag-muted)}
+.sv-card .en{font-family:var(--ui);font-size:12px;letter-spacing:.18em;
+  color:var(--ag-muted);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.sv-card .en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
+.sv-card h2{font-size:clamp(20px,1.9vw,26px);font-weight:500;margin:0 0 12px;
+  border:none;padding:0}
+.sv-card p{font-size:15.5px;color:#3f3f3b;line-height:1.9}
+.sv-card--wide{grid-column:1/-1}
+@media (max-width:860px){.sv-grid{grid-template-columns:1fr;gap:12px}}
+
+/* contact band: centered heading with a short red rule, then two dark panels
+   (phone / form) — the standard dealer-site closing block. */
+.cband h2{text-align:center;font-size:clamp(24px,2.4vw,32px);font-weight:500;
+  border:none;padding:0;margin:0}
+.cband h2::after{content:"";display:block;width:44px;height:2px;
+  background:var(--ag-red);margin:14px auto 0}
+.cband__g{margin-top:clamp(24px,3vw,36px);display:grid;
+  grid-template-columns:1fr 1fr;gap:16px}
+.cband__p{background:var(--ag-ink);color:var(--ag-white);text-align:center;
+  padding:clamp(28px,3.4vw,44px) 20px;display:flex;flex-direction:column;gap:12px;
+  transition:background .2s}
+.cband__p:hover{background:#222}
+.cband__p b{font-size:15px;font-weight:700}
+.cband__big{font-family:var(--ui);font-size:clamp(24px,2.6vw,34px);font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:12px;line-height:1.2}
+.cband__big svg{width:.85em;height:.85em;flex:none}
+.cband__p small{font-size:13.5px;color:var(--ag-muted-d);line-height:1.7}
+@media (max-width:760px){.cband__g{grid-template-columns:1fr;gap:12px}}
 </style>
 <script>document.documentElement.className+=" js"</script>
 <body class="page">
@@ -573,32 +603,38 @@ p{margin:0}
   <section class="r-entry">
     <h2 style="text-align:center">応募・カジュアル面談はこちら</h2>
     
-    <form id="agform" class="form" onsubmit="return agSubmit()">
+    <form id="agform" class="form" method="POST" enctype="multipart/form-data"
+      action="https://formsubmit.co/shinzaki@ag123.jp" onsubmit="return agSubmit()">
+      <input type="hidden" name="_subject" value="【A&Gサイト】採用エントリー">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://bsupply.jp/ag/thanks/">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="frow"><label>種別 <span class="req">必須</span></label>
-        <div><select name="kind"><option value="採用エントリー" selected>採用エントリー</option><option value="カジュアル面談">カジュアル面談</option><option value="採用に関するご質問">採用に関するご質問</option></select></div></div>
+        <div><select name="種別"><option value="採用エントリー" selected>採用エントリー</option><option value="カジュアル面談">カジュアル面談</option><option value="採用に関するご質問">採用に関するご質問</option></select></div></div>
       <div class="frow"><label for="f-name">お名前 <span class="req">必須</span></label>
-        <div><input id="f-name" name="name" autocomplete="name" placeholder="例：山田　太郎"></div></div>
+        <div><input id="f-name" name="お名前" autocomplete="name" placeholder="例：山田　太郎"></div></div>
       <div class="frow"><label for="f-kana">ふりがな <span class="req">必須</span></label>
-        <div><input id="f-kana" name="kana" placeholder="例：やまだ　たろう"></div></div>
+        <div><input id="f-kana" name="ふりがな" placeholder="例：やまだ　たろう"></div></div>
       <div class="frow"><label for="f-mail">メールアドレス <span class="req">必須</span></label>
         <div><input id="f-mail" name="email" autocomplete="email" inputmode="email" placeholder="例：taro@example.com"></div></div>
       <div class="frow"><label for="f-tel">電話番号</label>
-        <div><input id="f-tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="例：090-1234-5678">
+        <div><input id="f-tel" name="電話番号" autocomplete="tel" inputmode="tel" placeholder="例：090-1234-5678">
           <span class="hint">ご連絡の希望時間帯</span>
-          <select name="time" aria-label="ご連絡の希望時間帯" style="margin-top:7px">
+          <select name="連絡希望時間帯" aria-label="ご連絡の希望時間帯" style="margin-top:7px">
             <option value="">選択してください</option>
             <option>10:00〜12:00</option>
             <option>12:00〜15:00</option>
             <option>15:00〜18:00</option>
           </select></div></div>
       <div class="frow"><label for="f-addr">住所</label>
-        <div><input id="f-addr" name="address" autocomplete="address-level1" placeholder="例：大阪府大阪市"></div></div>
+        <div><input id="f-addr" name="住所" autocomplete="address-level1" placeholder="例：大阪府大阪市"></div></div>
       <div class="frow"><label for="f-body">お問い合わせ内容 <span class="req">必須</span></label>
-        <div><textarea id="f-body" name="body" placeholder="お問い合わせ内容についてご記入ください。"></textarea></div></div>
-      <div class="frow"><label for="f-resume">履歴書</label><div><input id="f-resume" name="resume" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="min-height:auto;padding:10px;background:none;border-style:dashed"><span class="hint">PDF・Word・画像。送信ボタンを押すとメールアプリが起動しますので、ここで選んだファイルをそのメールに添付してください（メールの仕様上、自動添付はされません）。</span></div></div>
-      <p class="f-note">送信ボタンを押すと、お使いのメールアプリが起動し、宛先（shinzaki@ag123.jp）と入力内容が入った状態でメールが作成されます。内容をご確認のうえ送信してください。</p>
+        <div><textarea id="f-body" name="お問い合わせ内容" placeholder="お問い合わせ内容についてご記入ください。"></textarea></div></div>
+      <div class="frow"><label for="f-resume">履歴書</label><div><input id="f-resume" name="attachment" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="min-height:auto;padding:10px;background:none;border-style:dashed"><span class="hint">PDF・Word・画像（10MBまで）。入力内容と一緒に届きます。</span></div></div>
+      <p class="f-note">送信内容は当社（shinzaki@ag123.jp）へメールで届きます。内容を確認のうえ、担当者よりご連絡いたします。</p>
       <p id="agerr" class="f-err" role="alert"></p>
-      <div class="f-submit"><button class="btn btn--dark" type="submit" style="min-width:240px">エントリーする →</button></div>
+      <div class="f-submit"><button class="btn btn--dark" type="submit" style="min-width:240px">エントリーする</button></div>
     </form>
   </section>
 </div></div>
@@ -606,33 +642,20 @@ p{margin:0}
 function agSubmit(){
   var f=document.getElementById('agform');
   var err=document.getElementById('agerr');
-  var v=function(n){var el=f.querySelector('[name='+n+']');return el?el.value.trim():'';};
-  var name=v('name'),kana=v('kana'),mail=v('email'),tel=v('tel'),
-      addr=v('address'),body=v('body'),kind=v('kind'),time=v('time');
+  var v=function(n){var el=f.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
   var problems=[];
-  if(!name)problems.push('お名前');
-  if(!kana)problems.push('ふりがな');
+  if(!v('お名前'))problems.push('お名前');
+  if(!v('ふりがな'))problems.push('ふりがな');
+  var mail=v('email');
   if(!mail||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail))problems.push('メールアドレス');
-  if(!body)problems.push('お問い合わせ内容');
+  if(!v('お問い合わせ内容'))problems.push('お問い合わせ内容');
   if(problems.length){
     err.textContent='入力をご確認ください: '+problems.join('、');
     err.classList.add('on');
     return false;
   }
   err.classList.remove('on');
-  var subject='【'+kind+'】'+name+'様よりサイトからのご連絡';
-  var lines=['種別: '+kind,'お名前: '+name,'ふりがな: '+kana,'メールアドレス: '+mail];
-  if(tel)lines.push('電話番号: '+tel);
-  if(time)lines.push('連絡希望時間帯: '+time);
-  if(addr)lines.push('住所: '+addr);
-  var rEl=f.querySelector('[name=resume]');
-  if(rEl&&rEl.files&&rEl.files.length){
-    lines.push('履歴書: '+rEl.files[0].name+'（このメールに添付してください）');
-  }
-  lines.push('','',body);
-  location.href='mailto:shinzaki@ag123.jp?subject='+encodeURIComponent(subject)
-    +'&body='+encodeURIComponent(lines.join('\n'));
-  return false;
+  return true;
 }
 </script>
 </main>
