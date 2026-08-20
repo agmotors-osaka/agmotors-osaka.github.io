@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>お問い合わせ ｜ 株式会社A&amp;G</title>
+<meta name="description" content="在庫確認・購入相談・買取査定のお問い合わせ。">
+<style>
+/* Subset to the site's own character set by scripts/subset_fonts.py.
+   1.0MB -> 115KB per weight. Only 400 and 500 are used anywhere in the design. */
+@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:400;font-display:swap;
+  src:url("/fonts/noto-sans-jp-400.woff2") format("woff2");}
+@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:500;font-display:swap;
+  src:url("/fonts/noto-sans-jp-500.woff2") format("woff2");}
+@font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:700;font-display:swap;
+  src:url("/fonts/noto-sans-jp-700.woff2") format("woff2");}
+
+:root{
+  --ag-black:#0b0b0b; --ag-ink:#141414; --ag-paper:#f4f3ee; --ag-white:#fff;
+  --ag-muted:#5c5c57; --ag-muted-d:#b0b0aa; --ag-line:#d8d7d1; --ag-line-d:#2a2a2a;
+  --ag-red:#d5112a;
+  --jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --ui:"Helvetica Neue",Inter,"Noto Sans JP",sans-serif;
+  --pad:clamp(18px,4vw,64px); --max:1400px;
+  --gap-s:clamp(64px,7vw,110px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ag-black);color:var(--ag-white);
+  font-family:var(--jp);font-size:17px;line-height:1.75;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,picture{display:block;max-width:100%}
+picture img{width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-weight:500;line-height:1.3;word-break:keep-all;overflow-wrap:normal;
+  letter-spacing:.01em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--ag-red);outline-offset:3px}
+/* overflow-x:clip (not hidden: hidden would break the sticky header by
+   creating a scroll container) pins the document width to the viewport, so
+   no stray wide element can widen the page — the iOS pinch-zoom "white
+   gutter" bug class. */
+html,body{overflow-x:clip}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* ---------- header ----------
+   One row: logo, nav chips, then the action cluster — aligned on a single
+   baseline as requested. Fits because the chips are compact (13.5px / 12px
+   pad ≈ 740px for all eight) and the phone number yields first: measured at
+   1440px the full row is ~1,345px against a 1,400px cap; below 1400px the tel
+   is hidden, and below 1180px the nav folds into the hamburger as before. */
+.hdr{position:sticky;top:0;z-index:40;padding-block:18px;background:var(--ag-black);
+  color:var(--ag-white)}
+.hdr .wrap{position:relative;display:flex;align-items:center;
+  gap:clamp(14px,1.6vw,22px)}
+.hdr__logo{display:flex;align-items:center;min-height:44px;flex:none}
+.hdr__logo img{height:32px;width:auto;object-fit:contain}
+.hdr__act{display:flex;align-items:center;gap:clamp(14px,1.4vw,22px);flex:none;
+  margin-inline-start:auto}
+/* Plain text nav — no boxes, no rules. Hover is a hairline underline, the
+   same treatment the reference sites use. */
+.nav{display:flex;gap:clamp(10px,1.4vw,22px);font-size:14px;
+  font-family:var(--ui);letter-spacing:.02em;min-width:0}
+.nav a{display:flex;align-items:center;min-height:44px;padding:0 3px;
+  font-weight:700;opacity:.92;white-space:nowrap;transition:opacity .18s}
+.nav a:hover{opacity:1;box-shadow:inset 0 -1px var(--ag-white)}
+.tel{font-family:var(--ui);font-size:19px;font-weight:600;letter-spacing:.03em;
+  white-space:nowrap;display:flex;align-items:center;min-height:44px}
+.tel small{display:block;font-size:10.5px;letter-spacing:.14em;opacity:.55;font-weight:500}
+/* Label left, arrow right — the closing affordance premium dealer sites use.
+   The arrow is generated here so no template carries a literal "→". */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;
+  min-height:54px;padding:0 24px;font-size:15px;font-weight:500;letter-spacing:.04em;
+  border-radius:2px;border:1px solid transparent;white-space:nowrap;
+  transition:background .18s,color .18s,border-color .18s}
+.btn::after{content:"→";font-family:var(--ui);font-size:15px;flex:none;
+  transition:transform .25s}
+.btn:hover::after{transform:translateX(5px)}
+.btn--noarw{justify-content:center;gap:9px}
+.btn--noarw::after{content:none}
+.btn--fill{background:var(--ag-white);color:var(--ag-ink)}
+.btn--fill:hover{background:#ddd}
+
+/* Moving-gradient border, requested for the header CTA specifically. CSS-only
+   (a rotating conic-gradient ring cut to just its outline via mask-composite)
+   rather than the React/framer-motion OriginKit component — same visual
+   result, no dependency, and it respects the site's existing
+   prefers-reduced-motion rule (animation:none) with no extra code. */
+@property --ag-glow-a{syntax:"<angle>";initial-value:0deg;inherits:false}
+.btn--glow{position:relative}
+.btn--glow::before{
+  content:"";position:absolute;inset:-4px;border-radius:6px;padding:2px;
+  background:conic-gradient(from var(--ag-glow-a),transparent 0deg,transparent 250deg,
+    var(--ag-red) 296deg,#ff8f6b 322deg,var(--ag-red) 348deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;animation:ag-glow-spin 3.4s linear infinite}
+@keyframes ag-glow-spin{to{--ag-glow-a:360deg}}
+.btn--line{border-color:rgba(255,255,255,.55);color:var(--ag-white)}
+.btn--line:hover{background:rgba(255,255,255,.12)}
+.btn--dark{background:var(--ag-ink);color:var(--ag-white)}
+.btn--dark:hover{background:#333}
+.btn--outdark{border-color:#bdbcb5;color:var(--ag-ink)}
+.btn--outdark:hover{background:rgba(0,0,0,.06)}
+.btn--sm{min-height:44px;font-size:14.5px;padding:0 16px;gap:14px}
+
+/* ---------- arrow-reveal button ----------
+   Vanilla port of the OriginKit Arrow Reveal Button: label left, a round
+   badge right; on hover the badge disc scales up to flood the whole pill and
+   the arrow travels from the badge centre to the button centre. The React/
+   framer-motion original is replaced by two measured CSS vars per button
+   (--rvl-s: cover scale, --rvl-x: centre travel) set by RVL_JS on load and
+   resize, and the same 0.46s cubic-bezier(.44,0,.56,1) ease. */
+.rvl{position:relative;display:inline-flex;align-items:center;
+  justify-content:space-between;gap:16px;min-height:52px;
+  padding:6px 6px 6px 22px;border-radius:999px;overflow:hidden;
+  background:var(--ag-ink);border:1px solid rgba(255,255,255,.38);color:#fff;
+  font-size:15px;font-weight:500;letter-spacing:.04em;white-space:nowrap;
+  transition:transform .18s ease}
+.rvl:active{transform:scale(.97)}
+.rvl__t{position:relative;z-index:1;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl__badge{flex:none;position:relative;z-index:2;width:38px;height:38px;
+  border-radius:50%;background:var(--ag-red);transform-origin:center;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl__i{position:absolute;z-index:3;right:6px;top:0;bottom:0;margin:auto 0;
+  width:38px;height:38px;display:grid;place-items:center;
+  font-family:var(--ui);font-size:16px;color:#fff;pointer-events:none;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl:hover .rvl__badge,.rvl:focus-visible .rvl__badge{transform:scale(var(--rvl-s,20))}
+.rvl:hover .rvl__i,.rvl:focus-visible .rvl__i{transform:translateX(var(--rvl-x,0px))}
+.rvl:hover .rvl__t{transform:translateX(8px)}
+.rvl--light{background:var(--ag-white);border-color:var(--ag-white);color:var(--ag-ink)}
+@media (prefers-reduced-motion:reduce){
+  .rvl:hover .rvl__badge{transform:none}
+  .rvl:hover .rvl__badge{background:var(--ag-red)}
+}
+.burger{display:none}
+
+/* ---------- mobile menu drawer ----------
+   The hamburger previously toggled nothing — below the nav breakpoint the
+   site had no navigation at all. Full-screen black drawer: nav links, tel,
+   SNS. Toggled by .burger, closed by its own ✕ or any link. */
+#mmenu{position:fixed;inset:0;z-index:70;background:var(--ag-black);
+  color:var(--ag-white);display:none;flex-direction:column;
+  padding:84px var(--pad) 40px;overflow:auto}
+#mmenu.on{display:flex}
+body.menu-open{overflow:hidden}
+.mclose{position:absolute;top:16px;right:var(--pad);width:44px;height:44px;
+  display:grid;place-items:center;background:none;
+  border:1px solid rgba(255,255,255,.4);border-radius:2px;cursor:pointer;color:#fff}
+.mclose svg{width:18px;height:18px;display:block}
+#mmenu nav{display:grid}
+#mmenu nav a{display:flex;align-items:center;justify-content:space-between;
+  min-height:58px;font-size:18px;font-weight:500;letter-spacing:.02em;
+  border-bottom:1px solid var(--ag-line-d)}
+#mmenu nav a::after{content:"→";font-family:var(--ui);font-size:15px;
+  color:var(--ag-muted-d)}
+#mmenu .m-tel{margin-top:32px;font-family:var(--ui);font-size:26px;font-weight:600;
+  letter-spacing:.03em;display:block}
+#mmenu .m-tel small{display:block;font-family:var(--sans);font-size:12.5px;
+  font-weight:400;letter-spacing:.06em;color:var(--ag-muted-d);margin-bottom:6px}
+#mmenu .sns{margin-top:28px}
+
+/* ---------- SNS ----------
+   Each mark carries its own brand colour, so the chips need a light base to sit
+   on: Threads is officially black and would disappear on the dark header. */
+.sns{display:flex;align-items:center;gap:9px}
+.sns__i{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;
+  transition:transform .18s,filter .18s}
+.sns__i svg{width:20px;height:20px;display:block}
+.sns__i:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.sns__i--instagram{color:#fff;
+  background:radial-gradient(circle at 28% 108%,#fdd85c 0%,#f7803c 24%,#e8215f 48%,#c32aa3 68%,#7d3ec9 100%)}
+.sns__i--threads{color:#000;background:#fff}
+.sns__i--line{color:#fff;background:#06c755}
+.sns__i--tel{color:#fff;background:var(--ag-red)}
+.sns--ft{margin-top:24px}
+
+/* ---------- hero ----------
+   Split composition. The photo panel keeps the source 4:3 ratio so no vehicle is
+   ever cut, and the black type panel continues the dark showroom wall that every
+   photo already has on its left. Measured crop: 0%.
+
+   Capped at the same --max as every other section: the hero source photos are
+   1920px native (that is what Instagram served, and no processing invents
+   sharper data than the file already has). Left uncapped, the photo panel grew
+   with the full viewport width, and past ~1650px of browser window it started
+   asking for more pixels than 1920px source can supply at a retina display —
+   confirmed by measurement (scripts/density.mjs) at 1920px viewport: density
+   0.78, a real, visible softening on any external monitor or large laptop
+   display. Capping to --max removes that ceiling entirely: the grid can never
+   render wider than what the source resolves crisply, on any screen. Because
+   <body> is already var(--ag-black), the cap is invisible — the letterboxing
+   on ultra-wide screens is the same black on both sides of the seam. */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,36fr) minmax(0,64fr);
+  max-width:var(--max);margin-inline:auto;
+  background:var(--ag-black);align-items:stretch}
+/* width:100% is load-bearing: the stage's only children are absolutely
+   positioned, so its intrinsic width is 0. Chromium stretches a grid item to
+   the column track anyway; WebKit (iOS Safari) resolves aspect-ratio from the
+   0 intrinsic width instead, collapsing the stage — and the whole hero photo —
+   to 0x0 on iPhone. An explicit width pins both engines to the track width. */
+.hero__stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;order:2}
+.hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.05s ease}
+.hero__slide[data-on]{opacity:1}
+.hero__slide picture,.hero__slide img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+/* Softens the seam between the black panel and the photo's own dark wall. */
+.hero__scrim{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(11,11,11,.92) 0%,rgba(11,11,11,.16) 15%,rgba(11,11,11,0) 34%)}
+.hero__in{order:1;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,5vh,64px) clamp(24px,3vw,44px) clamp(40px,5vh,64px) var(--pad);
+  min-height:0}
+.hero h1{font-size:clamp(38px,3.6vw,54px);letter-spacing:.02em;line-height:1.26}
+.hero__sub{margin-top:18px;font-size:16.5px;color:var(--ag-muted-d)}
+.hero__now{margin-top:26px;padding-top:16px;border-top:1px solid var(--ag-line-d);
+  font-size:14px;color:var(--ag-muted-d);font-family:var(--ui);letter-spacing:.04em}
+.hero__now b{display:block;font-family:var(--jp);font-size:17px;font-weight:500;
+  color:var(--ag-white);letter-spacing:.01em;margin-top:4px}
+.hero__cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- quick bar ---------- */
+.quick{border-block:1px solid var(--ag-line-d);background:#0e0e0e}
+.quick .wrap{display:flex;align-items:center;gap:clamp(14px,2vw,32px);
+  padding-block:20px;flex-wrap:wrap}
+.quick__info{display:flex;flex-direction:column;gap:2px;font-size:15px;line-height:1.6}
+.quick__info b{font-weight:500}
+.quick__info span{color:var(--ag-muted-d);font-size:13.5px}
+.quick__acts{margin-inline-start:auto;display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- sections ---------- */
+.sec{padding-block:var(--gap-s)}
+.sec--paper{background:var(--ag-paper);color:var(--ag-ink)}
+.sec--paper .lead{color:#3f3f3b}
+.shead{display:flex;align-items:flex-end;gap:24px;margin-bottom:clamp(28px,3.4vw,46px)}
+/* The naming convention every credible dealer site in the benchmark set uses
+   (81GALLERY, BUDDICA): a small EN category word, then the JP noun at full
+   size. Functional nouns only — no invented stage names. */
+.kicker{display:flex;align-items:center;gap:10px;font-family:var(--ui);
+  font-size:13px;letter-spacing:.22em;color:var(--ag-muted-d);margin-bottom:10px}
+.kicker::before{content:"";width:18px;height:2px;background:var(--ag-red)}
+.sec--paper .kicker{color:#6b6b64}
+.shead h2{font-size:clamp(30px,2.9vw,42px)}
+.shead .lead{margin-top:10px;font-size:16px;color:var(--ag-muted-d);max-width:44em}
+/* .sec--paper .lead above loses to this on source order despite equal
+   specificity; pin it explicitly rather than depend on rule order. */
+.sec--paper .shead .lead{color:#3f3f3b}
+.shead__link{margin-inline-start:auto;font-size:15px;white-space:nowrap;
+  display:inline-flex;align-items:center;min-height:44px;gap:8px;
+  border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* collection: a horizontal rail at the source ratio. Every card is identical so
+   nothing mismatches in height; the variety on this page comes from the four
+   different photo layouts, not from unequal cards inside one of them. */
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:32%;
+  gap:clamp(14px,1.5vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;padding-bottom:4px}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{scroll-snap-align:start}
+.card{position:relative;display:block;background:#141414;overflow:hidden}
+.card picture{aspect-ratio:4/3;overflow:hidden}
+.card img{transition:transform .6s ease}
+.card:hover img{transform:scale(1.03)}
+.card__t{padding:15px 17px 19px}
+.card__t b{display:block;font-size:20px;font-weight:500;letter-spacing:.01em;
+  word-break:keep-all;overflow-wrap:normal}
+.card__t span{display:block;margin-top:5px;font-size:13.5px;color:var(--ag-muted-d)}
+
+/* gallery: uniform grid, every plate the same size and ratio. The earlier
+   asymmetric mosaic (two sizes, one row offset) read as inconsistent rather
+   than deliberate — a plain aligned grid is what the reference dealer sites
+   actually use for vehicle galleries. */
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(12px,1.4vw,20px)}
+.mosaic picture{aspect-ratio:4/3}
+.mcap{margin-top:9px;font-size:13px;color:var(--ag-muted-d)}
+
+/* showroom: 640x480 sources are never stretched past native width */
+.show{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
+  align-items:start}
+/* The lead photo carries the section at scale; the two 640px sources sit below in
+   a pair so neither is ever painted above its native resolution. */
+.show__pics{grid-column:span 6;display:grid;gap:clamp(12px,1.4vw,18px)}
+.show__pics picture{aspect-ratio:4/3}
+.show__pics .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.4vw,18px);
+  align-items:start}
+.show__txt{grid-column:8/span 5}
+.show__txt h2{font-size:clamp(28px,2.7vw,40px)}
+.show__txt p{margin-top:16px;font-size:17px;color:#3f3f3b;max-width:32em}
+.dl{margin-top:28px;border-top:1px solid var(--ag-line);font-size:16px}
+.dl div{display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--ag-line)}
+.dl dt{width:5.5em;flex:none;color:var(--ag-muted);font-size:14.5px;margin:0}
+.dl dd{margin:0}
+.show__cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* services: card grid. Six equal cells — five services plus a dark closing
+   card that carries the link to the full page — so the block reads as one
+   composed unit instead of hairline rows that run together. Cards set their
+   own display:flex; no bare display:block override that would break the
+   button centering the old .svc a rule caused. */
+.svcg{margin-top:clamp(26px,3vw,42px);display:grid;
+  grid-template-columns:repeat(3,1fr);gap:14px}
+.svcg__c{display:flex;flex-direction:column;gap:10px;background:var(--ag-white);
+  border:1px solid var(--ag-line);padding:clamp(24px,2.6vw,34px);
+  transition:border-color .2s,transform .2s}
+.svcg__c:hover{border-color:var(--ag-ink);transform:translateY(-2px)}
+.svcg__en{font-family:var(--ui);font-size:12px;letter-spacing:.18em;
+  color:var(--ag-muted);display:flex;align-items:center;gap:8px}
+.svcg__en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
+.svcg__c b{font-size:clamp(18px,1.5vw,21px);font-weight:500;word-break:keep-all}
+.svcg__c p{font-size:14.5px;color:#4a4a45;line-height:1.8}
+.svcg__c--dark{background:var(--ag-ink);border-color:var(--ag-ink);color:var(--ag-white)}
+.svcg__c--dark p{color:var(--ag-muted-d)}
+.svcg__c--dark:hover{border-color:var(--ag-ink);background:#222}
+.svcg__more{margin-top:auto;padding-top:14px;font-size:14px;letter-spacing:.06em;
+  display:flex;align-items:center;gap:8px}
+.svcg__more::after{content:"→";font-family:var(--ui)}
+
+/* ---------- scroll reveal ----------
+   Applied broadly (services stages, gallery mosaic, showroom, company, contact)
+   so the page arrives as the reader scrolls rather than sitting fully rendered
+   and static — the difference between a page that was composed and one that
+   was assembled. Off by default; JS below flips it on once IntersectionObserver
+   confirms JS actually ran, so content is never hidden from a no-JS visitor. */
+.js .reveal{opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.16,.8,.32,1),transform .7s cubic-bezier(.16,.8,.32,1)}
+.js .reveal.is-in{opacity:1;transform:translateY(0)}
+.svcg__c.reveal:nth-child(2){transition-delay:.06s}
+.svcg__c.reveal:nth-child(3){transition-delay:.12s}
+.svcg__c.reveal:nth-child(4){transition-delay:.06s}
+.svcg__c.reveal:nth-child(5){transition-delay:.12s}
+.svcg__c.reveal:nth-child(6){transition-delay:.18s}
+.mosaic .reveal:nth-child(2){transition-delay:.08s}
+.mosaic .reveal:nth-child(3){transition-delay:.16s}
+.mosaic .reveal:nth-child(4){transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
+/* contact close */
+.cc{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px);
+  align-items:end}
+.cc__h{grid-column:span 6}
+.cc__h h2{font-size:clamp(28px,2.9vw,42px)}
+.cc__h p{margin-top:14px;color:var(--ag-muted-d);font-size:16px}
+.cc__a{grid-column:span 6;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
+/* footer */
+.ft{border-top:1px solid var(--ag-line-d);padding-block:56px 34px;font-size:15px}
+.ft__top{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,40px)}
+.ft__id{grid-column:span 5}
+.ft__id img{height:30px;width:auto;object-fit:contain;margin-bottom:20px}
+.ft__id address{font-style:normal;line-height:1.9;color:#fff;font-weight:500}
+.ft__nav{grid-column:span 7;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ft__nav a{display:flex;align-items:center;padding:9px 0;color:#fff;font-weight:500;min-height:44px}
+.ft__nav a:hover{color:var(--ag-white)}
+.ft__bot{margin-top:44px;padding-top:20px;border-top:1px solid var(--ag-line-d);
+  display:flex;gap:20px;flex-wrap:wrap;color:var(--ag-muted-d);font-size:13px}
+.ft__bot a{border-bottom:1px solid rgba(255,255,255,.2)}
+
+.mbar{display:none}
+
+/* ---------- intro overlay ----------
+   Sits above the already-painted page and clears itself. No fixed wait: it ends
+   as soon as the mark has formed, and a hard stop caps it regardless. */
+#intro{position:fixed;inset:0;z-index:90;background:var(--ag-black);
+  opacity:1;transition:opacity .45s ease}
+#intro.is-out{opacity:0;pointer-events:none}
+#intro canvas{position:absolute;inset:0;display:block}
+@media (prefers-reduced-motion:reduce){#intro{display:none}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1279px){
+  /* Measured fit boundary for the single-row header: with compact chips the
+     full row (logo + 8 chips + SNS + CTA, tel already hidden) fits at 1280px
+     and squeezes below it, so the hamburger takes over there. */
+  .nav,.hdr__act .btn{display:none}
+  .hdr__act .sns{gap:7px}
+  .hdr__act .sns__i{width:38px;height:38px}
+  .hdr__act .sns__i svg{width:18px;height:18px}
+  .burger{display:grid;place-items:center;width:44px;height:44px;
+    background:none;border:1px solid rgba(255,255,255,.4);border-radius:2px;cursor:pointer}
+  .burger i{display:block;width:19px;height:1.5px;background:#fff;box-shadow:0 6px #fff,0 -6px #fff}
+  .hero{grid-template-columns:1fr}
+  .hero__stage{order:1}
+  .hero__in{order:2;padding:clamp(26px,4vh,40px) var(--pad) clamp(30px,4vh,44px)}
+  .hdr{padding-block:14px}
+  .hero__scrim{background:linear-gradient(180deg,rgba(11,11,11,.5) 0%,rgba(11,11,11,0) 34%)}
+  .show__pics,.show__txt,.cc__h,.cc__a,
+  .ft__id,.ft__nav{grid-column:1/-1}
+  .cc__a{justify-content:flex-start}
+  .svcg{grid-template-columns:repeat(2,1fr)}
+  .rail{grid-auto-columns:46%}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .hero h1{font-size:38px;line-height:1.28}
+  .hero__cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero__cta .btn{width:100%}
+  .sns{gap:7px}
+  .sns__i svg{width:19px;height:19px}
+  /* header must hold logo + 4 icon marks + burger inside 360px */
+  .hdr__logo img{height:26px}
+  .hdr__act .sns{gap:6px}
+  .hdr__act .sns__i{width:32px;height:32px}
+  .hdr__act .sns__i svg{width:15px;height:15px}
+  .quick .wrap{flex-direction:column;align-items:stretch}
+  .quick__acts{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .quick__acts .rvl{width:100%}
+  .shead{flex-direction:column;align-items:stretch;gap:12px}
+  .shead__link{margin:0}
+  .rail{grid-auto-columns:78%;margin-inline:calc(var(--pad)*-1);
+    padding-inline:var(--pad);scroll-padding-inline:var(--pad)}
+  .mosaic{gap:10px}
+  .mosaic{grid-template-columns:repeat(2,1fr)}
+  /* kept at 2-up: stacking would paint these 640px sources at 354 CSS px */
+  .svcg{grid-template-columns:1fr;gap:10px}
+  .ft__nav{grid-template-columns:1fr 1fr}
+  body{padding-bottom:78px}
+  .mbar{display:grid;position:fixed;inset:auto 0 0;z-index:60;
+    grid-template-columns:1fr 1fr;gap:1px;background:#2a2a2a;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .mbar a{display:flex;align-items:center;justify-content:center;gap:8px;
+    min-height:58px;background:var(--ag-ink);color:#fff;font-size:16px;font-weight:500}
+  .mbar a.pri{background:var(--ag-white);color:var(--ag-ink)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* ---------- sub-page chrome ---------- */
+.page{background:var(--ag-paper);color:var(--ag-ink)}
+.phero{background:var(--ag-black);color:var(--ag-white);
+  padding:clamp(40px,6vw,84px) 0 clamp(36px,5vw,72px)}
+.phero h1{font-size:clamp(34px,3.4vw,50px)}
+.phero .lead{margin-top:14px;font-size:16.5px;color:var(--ag-muted-d);max-width:44em}
+.pbody{padding-block:clamp(48px,6vw,88px)}
+.pbody h2{font-size:clamp(24px,2.2vw,32px);margin-bottom:18px}
+.pbody section+section{margin-top:clamp(48px,6vw,80px)}
+.prose p{font-size:16.5px;line-height:2;color:#3f3f3b;max-width:44em}
+.prose p+p{margin-top:14px}
+
+/* nav: current page chip */
+.nav a[aria-current="page"]{opacity:1;box-shadow:inset 0 -2px var(--ag-red)}
+
+/* info table (company / access) */
+.tbl{border-top:1px solid var(--ag-line);max-width:760px}
+.tbl div{display:flex;gap:20px;padding:15px 0;border-bottom:1px solid var(--ag-line)}
+.tbl dt{width:9em;flex:none;color:var(--ag-muted);font-size:14.5px;margin:0;padding-top:2px}
+.tbl dd{margin:0;font-size:16px;line-height:1.9}
+
+/* vehicle / gallery grids */
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,20px)}
+.vgrid figure{margin:0}
+.vgrid picture{aspect-ratio:4/3;display:block}
+.vgrid figcaption{margin-top:8px;font-size:13.5px;color:#4a4a45}
+.vgrid button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+@media (max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+
+/* category blocks (vehicles page) */
+.cat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:clamp(20px,3vw,44px);align-items:start;padding-block:clamp(26px,3vw,40px);
+  border-top:1px solid var(--ag-line)}
+.cat:first-of-type{border-top:1px solid var(--ag-ink)}
+.cat h3{font-size:clamp(20px,1.8vw,25px);font-weight:500;margin:0 0 4px}
+.cat .en{font-family:var(--ui);font-size:12.5px;letter-spacing:.18em;color:var(--ag-muted)}
+.cat p{margin-top:10px;font-size:15.5px;line-height:1.95;color:#3f3f3b}
+.cat picture{aspect-ratio:16/9;display:block}
+@media (max-width:900px){.cat{grid-template-columns:1fr}}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:80;background:rgba(8,8,8,.93);display:none;
+  align-items:center;justify-content:center;padding:4vw;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:88vh;object-fit:contain}
+#lb figcaption{position:absolute;left:0;right:0;bottom:18px;text-align:center;
+  color:#fff;font-size:14px}
+
+/* forms (contact / recruit) — follows carbooth.site/contact: a centered page
+   title on the black band, then label-left / input-right rows separated by
+   dashed rules, with a red required badge. */
+.phero--center{text-align:center}
+.phero--center h1{display:inline-block;padding-bottom:14px;
+  border-bottom:2px solid var(--ag-white)}
+.phero--center .kicker{justify-content:center}
+.phero--center .kicker::before{display:none}
+.crumb{font-size:12.5px;color:var(--ag-muted-d);margin-bottom:26px;text-align:left}
+.crumb a{text-decoration:underline}
+.form{max-width:880px;margin-inline:auto}
+.frow{display:grid;grid-template-columns:250px minmax(0,1fr);gap:10px 26px;
+  align-items:start;padding-block:22px;border-bottom:1px dashed #b9b8b1}
+.frow:first-of-type{border-top:1px dashed #b9b8b1}
+.frow>label{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;
+  padding-top:12px}
+.req{background:var(--ag-red);color:#fff;font-size:12px;padding:2px 7px;border-radius:2px;
+  flex:none}
+.frow input,.frow textarea,.frow select{width:100%;max-width:440px;min-height:48px;
+  padding:11px 13px;border:1px solid #b3b2ab;border-radius:2px;font:inherit;font-size:16px;
+  background:var(--ag-white);color:var(--ag-ink)}
+.frow textarea{max-width:none;min-height:180px;resize:vertical}
+.frow select{max-width:280px}
+.frow .hint{display:block;margin-top:7px;font-size:13px;color:#65655f}
+.frow input:focus,.frow textarea:focus,.frow select:focus{
+  outline:2px solid var(--ag-ink);border-color:var(--ag-ink)}
+.f-note{font-size:13.5px;color:#65655f;margin:26px 0 20px;line-height:1.8;text-align:center}
+.f-err{display:none;color:var(--ag-red);font-size:14px;margin-bottom:16px;text-align:center}
+.f-err.on{display:block}
+.f-submit{text-align:center;margin-top:6px}
+@media (max-width:760px){
+  .frow{grid-template-columns:1fr;gap:8px}
+  .frow>label{padding-top:0}
+  .frow input,.frow select{max-width:none}
+}
+
+/* company page — alternating black/paper bands. The origin band carries a
+   canvas starfield (vanilla port of the GlitterWrap warp field: white stars
+   streaking outward with glitter flashes) behind much larger A/G lockup
+   typography. Copy is the user-fixed wording. */
+.co-origin{position:relative;background:var(--ag-black);color:var(--ag-white);
+  padding-block:clamp(80px,9vw,140px);overflow:hidden}
+.co-origin canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.co-origin .wrap{position:relative;z-index:1}
+.co-origin__title{text-align:center;margin-bottom:clamp(40px,5vw,72px)}
+.co-origin__title .kicker{justify-content:center;margin-bottom:12px}
+.co-origin__title h2{font-size:clamp(26px,2.6vw,38px);font-weight:700;
+  letter-spacing:.04em}
+.co-origin__grid{display:grid;grid-template-columns:1fr auto 1fr;
+  gap:clamp(20px,4vw,64px);align-items:center;max-width:1080px;margin-inline:auto;
+  text-align:center}
+.co-origin__x{font-family:var(--ui);font-size:clamp(30px,3vw,46px);
+  color:var(--ag-muted-d)}
+.co-origin__cell b{display:block;font-family:var(--ui);font-weight:700;
+  font-size:clamp(120px,15vw,220px);line-height:1;letter-spacing:-.02em;
+  color:var(--ag-white);text-shadow:0 0 60px rgba(255,255,255,.45)}
+.co-origin__cell b i{font-style:normal;color:var(--ag-red);
+  text-shadow:0 0 60px rgba(213,17,42,.45)}
+.co-origin__cell em{font-style:normal;display:block;margin-top:18px;
+  font-family:var(--ui);font-size:clamp(13px,1.2vw,16px);letter-spacing:.34em;
+  color:var(--ag-muted-d)}
+.co-origin__cell strong{display:block;margin-top:8px;
+  font-size:clamp(22px,2.2vw,30px);font-weight:700}
+.co-origin__lead{margin-top:clamp(48px,5.5vw,80px);text-align:center;
+  font-size:clamp(17px,1.6vw,22px);line-height:2.1}
+.co-ci{counter-reset:ci}
+.co-ci__item{display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(18px,2.4vw,36px);align-items:baseline;
+  padding-block:clamp(26px,3vw,40px);border-bottom:1px solid var(--ag-line)}
+.co-ci__item:first-child{border-top:1px solid var(--ag-ink)}
+.co-ci__n{font-family:var(--ui);font-size:clamp(28px,2.8vw,40px);font-weight:500;
+  color:var(--ag-red);min-width:2.1em}
+.co-ci__t{font-size:clamp(20px,2vw,28px);font-weight:500;line-height:1.7;
+  word-break:keep-all}
+.co-ceo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:clamp(28px,4vw,72px);align-items:start}
+.co-ceo__id .kicker{margin-bottom:16px;color:var(--ag-ink);font-weight:700}
+.co-ceo__id b{display:block;font-size:clamp(30px,3vw,44px);font-weight:500;
+  line-height:1.3}
+.co-ceo__id span{display:block;margin-top:8px;font-size:15px;color:#65655f}
+.co-tl{border-inline-start:2px solid var(--ag-ink);padding-inline-start:clamp(22px,2.6vw,36px);
+  display:grid;gap:clamp(22px,2.6vw,34px)}
+.co-tl div{position:relative}
+.co-tl div::before{content:"";position:absolute;
+  inset-inline-start:calc(clamp(22px,2.6vw,36px)*-1 - 6px);top:9px;width:10px;height:10px;
+  border-radius:50%;background:var(--ag-ink)}
+.co-tl b{display:block;font-size:17.5px;font-weight:500}
+.co-tl span{display:block;margin-top:4px;font-size:14.5px;color:#65655f}
+/* lounge band: the sofa source is 640px native — shown centred at native width
+   on paper rather than stretched full-bleed (which would soften it badly). */
+.co-band{background:var(--ag-paper);padding-block:clamp(8px,1vw,16px)}
+.co-band__in{max-width:640px;margin-inline:auto;padding-inline:var(--pad)}
+.co-band picture{aspect-ratio:4/3}
+.co-band picture img{width:100%;height:100%;object-fit:cover;display:block}
+.co-band figcaption{margin-top:10px;font-size:13.5px;color:#65655f;text-align:center}
+.co-fact{display:grid;grid-template-columns:minmax(0,1fr);max-width:920px;
+  margin-inline:auto}
+.co-fact .tbl{max-width:none}
+.co-fact .tbl div{grid-template-columns:180px minmax(0,1fr);padding-block:18px}
+.co-actions{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+@media (max-width:760px){
+  /* one column, equal width — centered hug-width buttons of different
+     lengths read as misaligned on a phone */
+  .co-actions{flex-direction:column;align-items:stretch}
+  .co-fact .tbl div{grid-template-columns:1fr;gap:4px;padding-block:14px}
+  .co-fact .tbl dt{width:auto}
+}
+@media (max-width:860px){
+  .co-origin__grid{grid-template-columns:1fr;gap:26px}
+  .co-origin__x{transform:rotate(90deg)}
+  .co-ceo{grid-template-columns:1fr}
+}
+
+/* recruit page */
+.r-msg{max-width:44em}
+.r-msg .big{font-size:clamp(22px,2.2vw,30px);font-weight:500;line-height:1.7;margin-bottom:18px}
+.r-entry{border-top:1px solid var(--ag-ink);margin-top:clamp(40px,5vw,64px);
+  padding-top:clamp(28px,3.4vw,44px)}
+
+/* news empty state */
+.n-empty{border:1px solid var(--ag-line);padding:clamp(30px,4vw,52px);text-align:center;
+  color:#4a4a45;font-size:16px;background:var(--ag-white)}
+
+/* stock page CTA panel */
+.s-cta{background:var(--ag-black);color:var(--ag-white);
+  padding:clamp(28px,3.6vw,48px);display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.s-cta b{display:block;font-size:clamp(20px,1.9vw,26px);font-weight:500}
+.s-cta span{display:block;margin-top:8px;font-size:15px;color:var(--ag-muted-d)}
+.s-cta .btn{margin-inline-start:auto}
+@media (max-width:760px){.s-cta .btn{margin:14px 0 0;width:100%}}
+
+/* services page: card grid (same system as the home services cards) */
+.sv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.sv-card{background:var(--ag-white);border:1px solid var(--ag-line);
+  padding:clamp(28px,3.2vw,44px);position:relative}
+.sv-card .en{font-family:var(--ui);font-size:12px;letter-spacing:.18em;
+  color:var(--ag-muted);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.sv-card .en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
+.sv-card h2{font-size:clamp(20px,1.9vw,26px);font-weight:500;margin:0 0 12px;
+  border:none;padding:0}
+.sv-card p{font-size:15.5px;color:#3f3f3b;line-height:1.9}
+.sv-card--wide{grid-column:1/-1}
+@media (max-width:860px){.sv-grid{grid-template-columns:1fr;gap:12px}}
+
+/* contact band: centered heading with a short red rule, then two dark panels
+   (phone / form) — the standard dealer-site closing block. */
+.cband h2{text-align:center;font-size:clamp(24px,2.4vw,32px);font-weight:500;
+  border:none;padding:0;margin:0}
+.cband h2::after{content:"";display:block;width:44px;height:2px;
+  background:var(--ag-red);margin:14px auto 0}
+.cband__g{margin-top:clamp(24px,3vw,36px);display:grid;
+  grid-template-columns:1fr 1fr;gap:16px}
+.cband__p{background:var(--ag-ink);color:var(--ag-white);text-align:center;
+  padding:clamp(28px,3.4vw,44px) 20px;display:flex;flex-direction:column;gap:12px;
+  transition:background .2s}
+.cband__p:hover{background:#222}
+.cband__p b{font-size:15px;font-weight:700}
+.cband__big{font-family:var(--ui);font-size:clamp(24px,2.6vw,34px);font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:12px;line-height:1.2}
+.cband__big svg{width:.85em;height:.85em;flex:none}
+.cband__p small{font-size:13.5px;color:var(--ag-muted-d);line-height:1.7}
+@media (max-width:760px){.cband__g{grid-template-columns:1fr;gap:12px}}
+</style>
+<script>document.documentElement.className+=" js"</script>
+<body class="page">
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="hdr__logo" href="/"><img src="/images/brand/ag-logo-light.png" width="875" height="348" alt="株式会社A&amp;G"></a>
+    <nav class="nav"><a href="/company">会社概要</a><a href="/services">サービス</a><a href="/stock">在庫車両</a><a href="/gallery">ギャラリー</a><a href="/recruit">採用情報</a><a href="/access">店舗情報</a><a href="/contact" aria-current="page">お問い合わせ</a></nav>
+    <div class="hdr__act">
+      <div class="sns "><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a><a class="sns__i sns__i--tel" href="tel:0667604158" aria-label="A&amp;Gに電話する（10:00—18:00・月曜定休）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      <a class="btn btn--fill btn--sm btn--glow" href="/stock">在庫車両を見る</a>
+      <button class="burger" aria-label="メニューを開く" aria-expanded="false"><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div id="mmenu" aria-hidden="true">
+  <button class="mclose" aria-label="メニューを閉じる">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <nav><a href="/company">会社概要</a><a href="/services">サービス</a><a href="/stock">在庫車両</a><a href="/gallery">ギャラリー</a><a href="/recruit">採用情報</a><a href="/access">店舗情報</a><a href="/contact" aria-current="page">お問い合わせ</a></nav>
+  <a class="m-tel" href="tel:0667604158"><small>TEL 10:00—18:00（月曜定休）</small>06-6760-4158</a>
+  <div class="sns "><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
+</div>
+
+<main>
+
+<div class="phero phero--center"><div class="wrap">
+  <p class="crumb"><a href="/">HOME</a> &gt; お問い合わせ</p>
+  <h1>お問い合わせ</h1>
+</div></div>
+<div class="pbody"><div class="wrap">
+  <section>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:44px">
+      <a class="btn btn--dark" href="tel:0667604158">電話問い合わせ（10:00—18:00）</a>
+      <a class="btn btn--outdark" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener">LINEで相談</a>
+      <a class="btn btn--outdark" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    
+    <form id="agform" class="form" method="POST" enctype="multipart/form-data"
+      action="https://formsubmit.co/shinzaki@ag123.jp" onsubmit="return agSubmit()">
+      <input type="hidden" name="_subject" value="【A&Gサイト】お問い合わせ">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://bsupply.jp/ag/thanks/">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="frow"><label>種別 <span class="req">必須</span></label>
+        <div><select name="種別"><option value="在庫確認・ご購入相談" selected>在庫確認・ご購入相談</option><option value="買取査定">買取査定</option><option value="その他">その他</option></select></div></div>
+      <div class="frow"><label for="f-name">お名前 <span class="req">必須</span></label>
+        <div><input id="f-name" name="お名前" autocomplete="name" placeholder="例：山田　太郎"></div></div>
+      <div class="frow"><label for="f-kana">ふりがな <span class="req">必須</span></label>
+        <div><input id="f-kana" name="ふりがな" placeholder="例：やまだ　たろう"></div></div>
+      <div class="frow"><label for="f-mail">メールアドレス <span class="req">必須</span></label>
+        <div><input id="f-mail" name="email" autocomplete="email" inputmode="email" placeholder="例：taro@example.com"></div></div>
+      <div class="frow"><label for="f-tel">電話番号</label>
+        <div><input id="f-tel" name="電話番号" autocomplete="tel" inputmode="tel" placeholder="例：090-1234-5678">
+          <span class="hint">ご連絡の希望時間帯</span>
+          <select name="連絡希望時間帯" aria-label="ご連絡の希望時間帯" style="margin-top:7px">
+            <option value="">選択してください</option>
+            <option>10:00〜12:00</option>
+            <option>12:00〜15:00</option>
+            <option>15:00〜18:00</option>
+          </select></div></div>
+      <div class="frow"><label for="f-addr">住所</label>
+        <div><input id="f-addr" name="住所" autocomplete="address-level1" placeholder="例：大阪府大阪市"></div></div>
+      <div class="frow"><label for="f-body">お問い合わせ内容 <span class="req">必須</span></label>
+        <div><textarea id="f-body" name="お問い合わせ内容" placeholder="お問い合わせ内容についてご記入ください。"></textarea></div></div>
+      
+      <p class="f-note">送信内容は当社（shinzaki@ag123.jp）へメールで届きます。内容を確認のうえ、担当者よりご連絡いたします。</p>
+      <p id="agerr" class="f-err" role="alert"></p>
+      <div class="f-submit"><button class="btn btn--dark" type="submit" style="min-width:240px">送信する</button></div>
+    </form>
+  </section>
+</div></div>
+<script>
+function agSubmit(){
+  var f=document.getElementById('agform');
+  var err=document.getElementById('agerr');
+  var v=function(n){var el=f.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+  var problems=[];
+  if(!v('お名前'))problems.push('お名前');
+  if(!v('ふりがな'))problems.push('ふりがな');
+  var mail=v('email');
+  if(!mail||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail))problems.push('メールアドレス');
+  if(!v('お問い合わせ内容'))problems.push('お問い合わせ内容');
+  if(problems.length){
+    err.textContent='入力をご確認ください: '+problems.join('、');
+    err.classList.add('on');
+    return false;
+  }
+  err.classList.remove('on');
+  return true;
+}
+</script>
+</main>
+
+<footer class="ft" style="background:var(--ag-black);color:var(--ag-white)">
+  <div class="wrap">
+    <div class="ft__top">
+      <div class="ft__id">
+        <img src="/images/brand/ag-logo-light.png" width="875" height="348" alt="株式会社A&amp;G">
+        <address>
+          〒551-0023 大阪府大阪市大正区鶴町1-13-23<br>
+          TEL 06-6760-4158 ／ FAX 06-6760-4159<br>
+          営業時間 10:00—18:00 ／ 月曜定休
+        </address>
+        <div class="sns sns--ft"><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
+      </div>
+      <nav class="ft__nav"><a href="/company">会社概要</a><a href="/services">サービス</a><a href="/stock">在庫車両</a><a href="/gallery">ギャラリー</a><a href="/recruit">採用情報</a><a href="/access">店舗情報</a><a href="/contact">お問い合わせ</a><a href="/news">お知らせ</a><a href="/privacy">プライバシーポリシー</a><a href="https://www.carsensor.net/shop/osaka/327843001/stocklist/">カーセンサー</a></nav>
+    </div>
+    <div class="ft__bot"><span>© 2026 株式会社A&amp;G</span></div>
+  </div>
+</footer>
+
+<nav class="mbar">
+  <a class="pri" href="tel:0667604158">電話問い合わせ</a>
+  <a href="/contact">お問い合わせ</a>
+</nav>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('mmenu');
+  if(!b||!m)return;
+  function set(o){
+    m.classList.toggle('on',o);
+    document.body.classList.toggle('menu-open',o);
+    b.setAttribute('aria-expanded',o?'true':'false');
+    m.setAttribute('aria-hidden',o?'false':'true');
+  }
+  b.addEventListener('click',function(){ set(!m.classList.contains('on')); });
+  m.querySelector('.mclose').addEventListener('click',function(){ set(false); });
+  [].forEach.call(m.querySelectorAll('nav a'),function(a){
+    a.addEventListener('click',function(){ set(false); });
+  });
+})();
+</script>
+
+</body>
+</html>
