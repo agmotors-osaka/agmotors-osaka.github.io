@@ -102,35 +102,37 @@ html,body{overflow-x:clip}
 .btn--sm{min-height:44px;font-size:14.5px;padding:0 16px;gap:14px}
 
 /* ---------- arrow-reveal button ----------
-   Vanilla port of the OriginKit Arrow Reveal Button: label left, a round
-   badge right; on hover the badge disc scales up to flood the whole pill and
-   the arrow travels from the badge centre to the button centre. The React/
-   framer-motion original is replaced by two measured CSS vars per button
-   (--rvl-s: cover scale, --rvl-x: centre travel) set by RVL_JS on load and
-   resize, and the same 0.46s cubic-bezier(.44,0,.56,1) ease. */
-.rvl{position:relative;display:inline-flex;align-items:center;
-  justify-content:space-between;gap:16px;min-height:52px;
-  padding:6px 6px 6px 22px;border-radius:999px;overflow:hidden;
+   Label left, a round red arrow badge right. Hover simply flips the pill to
+   a white background with dark text — no coverage/reveal trick, so the
+   label never disappears mid-hover (the OriginKit original's badge-floods-
+   the-pill animation hid the whole label, which read as broken). */
+.rvl{display:inline-flex;align-items:center;justify-content:space-between;
+  gap:16px;min-height:52px;padding:6px 6px 6px 22px;border-radius:999px;
   background:var(--ag-ink);border:1px solid rgba(255,255,255,.38);color:#fff;
   font-size:15px;font-weight:500;letter-spacing:.04em;white-space:nowrap;
-  transition:transform .18s ease}
+  transition:background .22s ease,color .22s ease,border-color .22s ease,transform .18s ease}
+.rvl:hover,.rvl:focus-visible{background:var(--ag-white);color:var(--ag-ink);
+  border-color:var(--ag-white)}
 .rvl:active{transform:scale(.97)}
-.rvl__t{position:relative;z-index:1;
-  transition:transform .46s cubic-bezier(.44,0,.56,1)}
-.rvl__badge{flex:none;position:relative;z-index:2;width:38px;height:38px;
-  border-radius:50%;background:var(--ag-red);transform-origin:center;
-  transition:transform .46s cubic-bezier(.44,0,.56,1)}
-.rvl__i{position:absolute;z-index:3;right:6px;top:0;bottom:0;margin:auto 0;
-  width:38px;height:38px;display:grid;place-items:center;
-  font-family:var(--ui);font-size:16px;color:#fff;pointer-events:none;
-  transition:transform .46s cubic-bezier(.44,0,.56,1)}
-.rvl:hover .rvl__badge,.rvl:focus-visible .rvl__badge{transform:scale(var(--rvl-s,20))}
-.rvl:hover .rvl__i,.rvl:focus-visible .rvl__i{transform:translateX(var(--rvl-x,0px))}
-.rvl:hover .rvl__t{transform:translateX(8px)}
+.rvl__badge{flex:none;width:38px;height:38px;border-radius:50%;
+  background:var(--ag-red);color:#fff;display:grid;place-items:center;
+  font-family:var(--ui);font-size:16px;transition:transform .22s ease}
+.rvl:hover .rvl__badge,.rvl:focus-visible .rvl__badge{transform:scale(1.08)}
 .rvl--light{background:var(--ag-white);border-color:var(--ag-white);color:var(--ag-ink)}
-@media (prefers-reduced-motion:reduce){
-  .rvl:hover .rvl__badge{transform:none}
-  .rvl:hover .rvl__badge{background:var(--ag-red)}
+.rvl--light:hover,.rvl--light:focus-visible{background:var(--ag-ink);color:#fff;
+  border-color:rgba(255,255,255,.38)}
+/* secondary on paper background: outline pill */
+.rvl--line{background:transparent;border-color:#bdbcb5;color:var(--ag-ink)}
+.rvl--line:hover,.rvl--line:focus-visible{background:var(--ag-ink);color:#fff;
+  border-color:var(--ag-ink)}
+/* Standing rule: sibling action buttons are ALWAYS equal width — a grid of
+   equal tracks, never flex hugging each label. */
+.rvl-group{display:grid;grid-template-columns:repeat(2,minmax(0,260px));
+  gap:12px;justify-content:center}
+.rvl-group--3{grid-template-columns:repeat(3,minmax(0,240px))}
+.rvl-group--left{justify-content:flex-start}
+@media (max-width:760px){
+  .rvl-group,.rvl-group--3{grid-template-columns:1fr}
 }
 .burger{display:none}
 
@@ -210,11 +212,16 @@ body.menu-open{overflow:hidden}
   min-height:0}
 .hero h1{font-size:clamp(38px,3.6vw,54px);letter-spacing:.02em;line-height:1.26}
 .hero__sub{margin-top:18px;font-size:16.5px;color:var(--ag-muted-d)}
-.hero__now{margin-top:26px;padding-top:16px;border-top:1px solid var(--ag-line-d);
-  font-size:14px;color:var(--ag-muted-d);font-family:var(--ui);letter-spacing:.04em}
-.hero__now b{display:block;font-family:var(--jp);font-size:17px;font-weight:500;
-  color:var(--ag-white);letter-spacing:.01em;margin-top:4px}
-.hero__cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+/* Now sits on the photo itself, bottom-right — the caption belongs with the
+   picture it describes, not stacked into the text column where it read as an
+   unrelated fourth line of copy. */
+.hero__now{position:absolute;z-index:2;right:clamp(18px,2.2vw,28px);
+  bottom:clamp(18px,2.2vw,28px);text-align:right;padding:10px 16px;
+  background:rgba(11,11,11,.55);backdrop-filter:blur(6px);border-radius:2px;
+  font-size:12px;color:var(--ag-muted-d);font-family:var(--ui);letter-spacing:.08em}
+.hero__now b{display:block;font-family:var(--jp);font-size:16px;font-weight:500;
+  color:var(--ag-white);letter-spacing:.01em;margin-top:3px}
+.hero__cta{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,238px));gap:12px}
 
 /* ---------- quick bar ---------- */
 .quick{border-block:1px solid var(--ag-line-d);background:#0e0e0e}
@@ -306,11 +313,8 @@ body.menu-open{overflow:hidden}
 .svcg__en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
 .svcg__c b{font-size:clamp(18px,1.5vw,21px);font-weight:500;word-break:keep-all}
 .svcg__c p{font-size:14.5px;color:#4a4a45;line-height:1.8}
-.svcg__c--dark{background:var(--ag-ink);border-color:var(--ag-ink);color:var(--ag-white)}
-.svcg__c--dark p{color:var(--ag-muted-d)}
-.svcg__c--dark:hover{border-color:var(--ag-ink);background:#222}
 .svcg__more{margin-top:auto;padding-top:14px;font-size:14px;letter-spacing:.06em;
-  display:flex;align-items:center;gap:8px}
+  color:var(--ag-ink);display:flex;align-items:center;gap:8px}
 .svcg__more::after{content:"→";font-family:var(--ui)}
 
 /* ---------- scroll reveal ----------
@@ -390,8 +394,7 @@ body.menu-open{overflow:hidden}
 @media (max-width:760px){
   body{font-size:16px}
   .hero h1{font-size:38px;line-height:1.28}
-  .hero__cta{flex-direction:column;align-items:stretch;gap:10px}
-  .hero__cta .btn{width:100%}
+  .hero__cta{grid-template-columns:1fr;gap:10px}
   .sns{gap:7px}
   .sns__i svg{width:19px;height:19px}
   /* header must hold logo + 4 icon marks + burger inside 360px */
@@ -451,14 +454,15 @@ body.menu-open{overflow:hidden}
 
 <main>
 <section class="hero">
-  <div class="hero__stage"><div class="hero__slide" data-on=""><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-mercedes-gclass-01-640.avif 640w, /images/gallery/ag-veh-mercedes-gclass-01-960.avif 960w, /images/gallery/ag-veh-mercedes-gclass-01-1280.avif 1280w, /images/gallery/ag-veh-mercedes-gclass-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" srcset="/images/gallery/ag-veh-mercedes-gclass-01-640.webp 640w, /images/gallery/ag-veh-mercedes-gclass-01-960.webp 960w, /images/gallery/ag-veh-mercedes-gclass-01-1280.webp 1280w, /images/gallery/ag-veh-mercedes-gclass-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img src="/images/gallery/ag-veh-mercedes-gclass-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたシャンパンカラーのメルセデスAMG Gクラス" loading="eager" decoding="async" fetchpriority="high"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-lamborghini-urus-01-640.avif 640w, /images/gallery/ag-veh-lamborghini-urus-01-960.avif 960w, /images/gallery/ag-veh-lamborghini-urus-01-1280.avif 1280w, /images/gallery/ag-veh-lamborghini-urus-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" srcset="/images/gallery/ag-veh-lamborghini-urus-01-640.webp 640w, /images/gallery/ag-veh-lamborghini-urus-01-960.webp 960w, /images/gallery/ag-veh-lamborghini-urus-01-1280.webp 1280w, /images/gallery/ag-veh-lamborghini-urus-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img src="/images/gallery/ag-veh-lamborghini-urus-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたホワイトのランボルギーニ ウルス" loading="eager" decoding="async"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" data-srcset="/images/gallery/ag-veh-range-rover-01-640.avif 640w, /images/gallery/ag-veh-range-rover-01-960.avif 960w, /images/gallery/ag-veh-range-rover-01-1280.avif 1280w, /images/gallery/ag-veh-range-rover-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" data-srcset="/images/gallery/ag-veh-range-rover-01-640.webp 640w, /images/gallery/ag-veh-range-rover-01-960.webp 960w, /images/gallery/ag-veh-range-rover-01-1280.webp 1280w, /images/gallery/ag-veh-range-rover-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img data-src="/images/gallery/ag-veh-range-rover-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたブロンズのレンジローバー" loading="lazy" decoding="async"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" data-srcset="/images/gallery/ag-veh-mercedes-sclass-01-640.avif 640w, /images/gallery/ag-veh-mercedes-sclass-01-960.avif 960w, /images/gallery/ag-veh-mercedes-sclass-01-1280.avif 1280w, /images/gallery/ag-veh-mercedes-sclass-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" data-srcset="/images/gallery/ag-veh-mercedes-sclass-01-640.webp 640w, /images/gallery/ag-veh-mercedes-sclass-01-960.webp 960w, /images/gallery/ag-veh-mercedes-sclass-01-1280.webp 1280w, /images/gallery/ag-veh-mercedes-sclass-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img data-src="/images/gallery/ag-veh-mercedes-sclass-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたホワイトのメルセデス・ベンツ Sクラス" loading="lazy" decoding="async"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" data-srcset="/images/gallery/ag-veh-porsche-911-01-640.avif 640w, /images/gallery/ag-veh-porsche-911-01-960.avif 960w, /images/gallery/ag-veh-porsche-911-01-1280.avif 1280w, /images/gallery/ag-veh-porsche-911-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" data-srcset="/images/gallery/ag-veh-porsche-911-01-640.webp 640w, /images/gallery/ag-veh-porsche-911-01-960.webp 960w, /images/gallery/ag-veh-porsche-911-01-1280.webp 1280w, /images/gallery/ag-veh-porsche-911-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img data-src="/images/gallery/ag-veh-porsche-911-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたホワイトのポルシェ 911 カブリオレ" loading="lazy" decoding="async"></picture></div><div class="hero__scrim"></div></div>
+  <div class="hero__stage"><div class="hero__slide" data-on=""><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-mercedes-gclass-01-640.avif 640w, /images/gallery/ag-veh-mercedes-gclass-01-960.avif 960w, /images/gallery/ag-veh-mercedes-gclass-01-1280.avif 1280w, /images/gallery/ag-veh-mercedes-gclass-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" srcset="/images/gallery/ag-veh-mercedes-gclass-01-640.webp 640w, /images/gallery/ag-veh-mercedes-gclass-01-960.webp 960w, /images/gallery/ag-veh-mercedes-gclass-01-1280.webp 1280w, /images/gallery/ag-veh-mercedes-gclass-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img src="/images/gallery/ag-veh-mercedes-gclass-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたシャンパンカラーのメルセデスAMG Gクラス" loading="eager" decoding="async" fetchpriority="high"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-lamborghini-urus-01-640.avif 640w, /images/gallery/ag-veh-lamborghini-urus-01-960.avif 960w, /images/gallery/ag-veh-lamborghini-urus-01-1280.avif 1280w, /images/gallery/ag-veh-lamborghini-urus-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" srcset="/images/gallery/ag-veh-lamborghini-urus-01-640.webp 640w, /images/gallery/ag-veh-lamborghini-urus-01-960.webp 960w, /images/gallery/ag-veh-lamborghini-urus-01-1280.webp 1280w, /images/gallery/ag-veh-lamborghini-urus-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img src="/images/gallery/ag-veh-lamborghini-urus-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたホワイトのランボルギーニ ウルス" loading="eager" decoding="async"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" data-srcset="/images/gallery/ag-veh-range-rover-01-640.avif 640w, /images/gallery/ag-veh-range-rover-01-960.avif 960w, /images/gallery/ag-veh-range-rover-01-1280.avif 1280w, /images/gallery/ag-veh-range-rover-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" data-srcset="/images/gallery/ag-veh-range-rover-01-640.webp 640w, /images/gallery/ag-veh-range-rover-01-960.webp 960w, /images/gallery/ag-veh-range-rover-01-1280.webp 1280w, /images/gallery/ag-veh-range-rover-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img data-src="/images/gallery/ag-veh-range-rover-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたブロンズのレンジローバー" loading="lazy" decoding="async"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" data-srcset="/images/gallery/ag-veh-mercedes-sclass-01-640.avif 640w, /images/gallery/ag-veh-mercedes-sclass-01-960.avif 960w, /images/gallery/ag-veh-mercedes-sclass-01-1280.avif 1280w, /images/gallery/ag-veh-mercedes-sclass-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" data-srcset="/images/gallery/ag-veh-mercedes-sclass-01-640.webp 640w, /images/gallery/ag-veh-mercedes-sclass-01-960.webp 960w, /images/gallery/ag-veh-mercedes-sclass-01-1280.webp 1280w, /images/gallery/ag-veh-mercedes-sclass-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img data-src="/images/gallery/ag-veh-mercedes-sclass-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたホワイトのメルセデス・ベンツ Sクラス" loading="lazy" decoding="async"></picture></div><div class="hero__slide"><picture class=""><source type="image/avif" data-srcset="/images/gallery/ag-veh-porsche-911-01-640.avif 640w, /images/gallery/ag-veh-porsche-911-01-960.avif 960w, /images/gallery/ag-veh-porsche-911-01-1280.avif 1280w, /images/gallery/ag-veh-porsche-911-01-1920.avif 1920w" sizes="(max-width:1080px) 100vw, 64vw"><source type="image/webp" data-srcset="/images/gallery/ag-veh-porsche-911-01-640.webp 640w, /images/gallery/ag-veh-porsche-911-01-960.webp 960w, /images/gallery/ag-veh-porsche-911-01-1280.webp 1280w, /images/gallery/ag-veh-porsche-911-01-1920.webp 1920w" sizes="(max-width:1080px) 100vw, 64vw"><img data-src="/images/gallery/ag-veh-porsche-911-01-1920.jpg" width="1920" height="1440" alt="A&Gショールームに展示されたホワイトのポルシェ 911 カブリオレ" loading="lazy" decoding="async"></picture></div><div class="hero__scrim"></div>
+    <p class="hero__now">IN THE SHOWROOM<b id="heroName">メルセデス・ベンツ Gクラス</b></p>
+  </div>
   <div class="hero__in">
     <h1>理想の一台と<wbr>出会う場所</h1>
     <p class="hero__sub">大阪市大正区。<wbr>輸入車・国産車の販売・買取</p>
-    <p class="hero__now">IN THE SHOWROOM<b id="heroName">メルセデス・ベンツ Gクラス</b></p>
     <div class="hero__cta">
-      <a class="btn btn--fill" href="/stock">在庫車両を見る</a>
-      <a class="btn btn--line" href="/contact">来店のご相談</a>
+      <a class="rvl rvl--light" href="/stock"><span class="rvl__t">在庫車両を見る</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl" href="/contact"><span class="rvl__t">来店のご相談</span><span class="rvl__badge" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -470,10 +474,10 @@ body.menu-open{overflow:hidden}
       <span>10:00—18:00 ／ 月曜定休</span>
     </div>
     <div class="quick__acts">
-      <a class="rvl" href="/stock"><span class="rvl__t">在庫一覧</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
-      <a class="rvl" href="https://www.carsensor.net/shop/osaka/327843001/stocklist/"><span class="rvl__t">カーセンサー</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
-      <a class="rvl" href="/access"><span class="rvl__t">店舗情報</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
-      <a class="rvl" href="tel:0667604158"><span class="rvl__t">電話問い合わせ</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl" href="/stock"><span class="rvl__t">在庫一覧</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl" href="https://www.carsensor.net/shop/osaka/327843001/stocklist/"><span class="rvl__t">カーセンサー</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl" href="/access"><span class="rvl__t">店舗情報</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl" href="tel:0667604158"><span class="rvl__t">電話問い合わせ</span><span class="rvl__badge" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -499,7 +503,7 @@ body.menu-open{overflow:hidden}
         <p class="kicker">GALLERY</p>
         <h2>これまでの取扱車両</h2>
       </div>
-      <a class="shead__link" href="/gallery">ギャラリー →</a>
+      <a class="shead__link" href="/gallery">ギャラリーを見る →</a>
     </div>
     <div class="mosaic"><figure class="reveal" style="margin:0"><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-mercedes-amggt-01-640.avif 640w, /images/gallery/ag-veh-mercedes-amggt-01-960.avif 960w, /images/gallery/ag-veh-mercedes-amggt-01-1280.avif 1280w" sizes="(max-width:760px) 50vw, 25vw"><source type="image/webp" srcset="/images/gallery/ag-veh-mercedes-amggt-01-640.webp 640w, /images/gallery/ag-veh-mercedes-amggt-01-960.webp 960w, /images/gallery/ag-veh-mercedes-amggt-01-1280.webp 1280w" sizes="(max-width:760px) 50vw, 25vw"><img src="/images/gallery/ag-veh-mercedes-amggt-01-1280.jpg" width="1477" height="1108" alt="A&Gショールームに展示されたホワイトのメルセデスAMG GT 4ドアクーペ" loading="lazy" decoding="async"></picture><figcaption class="mcap">メルセデス・ベンツ AMG GT 4ドアクーペ</figcaption></figure><figure class="reveal" style="margin:0"><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-lexus-lm-01-640.avif 640w, /images/gallery/ag-veh-lexus-lm-01-960.avif 960w" sizes="(max-width:760px) 50vw, 25vw"><source type="image/webp" srcset="/images/gallery/ag-veh-lexus-lm-01-640.webp 640w, /images/gallery/ag-veh-lexus-lm-01-960.webp 960w" sizes="(max-width:760px) 50vw, 25vw"><img src="/images/gallery/ag-veh-lexus-lm-01-960.jpg" width="1107" height="830" alt="A&Gショールームに展示されたブラックのレクサス LM" loading="lazy" decoding="async"></picture><figcaption class="mcap">レクサス LM</figcaption></figure><figure class="reveal" style="margin:0"><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-volvo-v40-01-640.avif 640w, /images/gallery/ag-veh-volvo-v40-01-960.avif 960w, /images/gallery/ag-veh-volvo-v40-01-1280.avif 1280w" sizes="(max-width:760px) 50vw, 25vw"><source type="image/webp" srcset="/images/gallery/ag-veh-volvo-v40-01-640.webp 640w, /images/gallery/ag-veh-volvo-v40-01-960.webp 960w, /images/gallery/ag-veh-volvo-v40-01-1280.webp 1280w" sizes="(max-width:760px) 50vw, 25vw"><img src="/images/gallery/ag-veh-volvo-v40-01-1280.jpg" width="1440" height="1080" alt="A&Gショールームに展示されたレッドのボルボ V40" loading="lazy" decoding="async"></picture><figcaption class="mcap">ボルボ V40</figcaption></figure><figure class="reveal" style="margin:0"><picture class=""><source type="image/avif" srcset="/images/gallery/ag-veh-lexus-lx-02-640.avif 640w, /images/gallery/ag-veh-lexus-lx-02-960.avif 960w, /images/gallery/ag-veh-lexus-lx-02-1280.avif 1280w" sizes="(max-width:760px) 50vw, 25vw"><source type="image/webp" srcset="/images/gallery/ag-veh-lexus-lx-02-640.webp 640w, /images/gallery/ag-veh-lexus-lx-02-960.webp 960w, /images/gallery/ag-veh-lexus-lx-02-1280.webp 1280w" sizes="(max-width:760px) 50vw, 25vw"><img src="/images/gallery/ag-veh-lexus-lx-02-1280.jpg" width="1477" height="831" alt="A&Gショールームに展示されたブラックのレクサス LX を横位置で捉えた一枚" loading="lazy" decoding="async"></picture><figcaption class="mcap">レクサス LX</figcaption></figure></div>
   </div>
@@ -557,7 +561,7 @@ body.menu-open{overflow:hidden}
       <a class="svcg__c reveal" href="/services"><span class="svcg__en">MAINTENANCE</span>
         <b>整備・板金</b>
         <p>ご購入後の整備・板金に対応します。</p></a>
-      <a class="svcg__c svcg__c--dark reveal" href="/services"><span class="svcg__en">NATIONWIDE</span>
+      <a class="svcg__c reveal" href="/services"><span class="svcg__en">NATIONWIDE</span>
         <b>全国販売・ご納車に対応</b>
         <p>遠方のお客様への販売・ご納車も行っています。</p>
         <span class="svcg__more">サービス詳細</span></a>
@@ -573,9 +577,9 @@ body.menu-open{overflow:hidden}
       <p>在庫確認・買取査定・ご来店のご予約は、お電話またはSNSのメッセージで承ります。</p>
     </div>
     <div class="cc__a reveal">
-      <a class="rvl rvl--light" href="tel:0667604158"><span class="rvl__t">06-6760-4158</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
-      <a class="rvl" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener"><span class="rvl__t">Instagram</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
-      <a class="rvl" href="/contact"><span class="rvl__t">お問い合わせフォーム</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl rvl--light" href="tel:0667604158"><span class="rvl__t">06-6760-4158</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener"><span class="rvl__t">Instagram</span><span class="rvl__badge" aria-hidden="true">→</span></a>
+      <a class="rvl" href="/contact"><span class="rvl__t">お問い合わせフォーム</span><span class="rvl__badge" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -769,27 +773,6 @@ body.menu-open{overflow:hidden}
   [].forEach.call(m.querySelectorAll('nav a'),function(a){
     a.addEventListener('click',function(){ set(false); });
   });
-})();
-</script>
-<script>
-(function(){
-  var btns=[].slice.call(document.querySelectorAll('.rvl'));
-  if(!btns.length)return;
-  function measure(){
-    btns.forEach(function(b){
-      var badge=b.querySelector('.rvl__badge');
-      if(!badge)return;
-      var w=b.offsetWidth,h=b.offsetHeight,d=badge.offsetWidth;
-      if(!w||!h||!d)return;
-      var cx=badge.offsetLeft+d/2,cy=badge.offsetTop+badge.offsetHeight/2;
-      var far=Math.hypot(Math.max(cx,w-cx),Math.max(cy,h-cy));
-      b.style.setProperty('--rvl-s',(2*far*1.02/d).toFixed(2));
-      b.style.setProperty('--rvl-x',(w/2-cx).toFixed(1)+'px');
-    });
-  }
-  measure();
-  addEventListener('resize',measure);
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
 })();
 </script>
 
