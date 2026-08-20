@@ -539,8 +539,10 @@ p{margin:0}
 .sv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .sv-card{background:var(--ag-white);border:1px solid var(--ag-line);
   padding:clamp(28px,3.2vw,44px);position:relative}
-.sv-card .no{position:absolute;top:clamp(24px,2.6vw,36px);right:clamp(24px,2.6vw,36px);
-  font-family:var(--ui);font-size:13px;letter-spacing:.12em;color:var(--ag-muted)}
+.sv-card .no{position:absolute;top:clamp(14px,1.6vw,22px);right:clamp(20px,2.2vw,30px);
+  font-family:var(--ui);font-size:clamp(48px,4.6vw,68px);font-weight:700;line-height:1;
+  letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px #c6c5be;
+  pointer-events:none;user-select:none}
 .sv-card .en{font-family:var(--ui);font-size:12px;letter-spacing:.18em;
   color:var(--ag-muted);display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .sv-card .en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
@@ -594,7 +596,7 @@ p{margin:0}
 <div class="pbody"><div class="wrap">
   <section>
     <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:44px">
-      <a class="btn btn--dark" href="tel:0667604158">電話する（10:00—18:00）</a>
+      <a class="btn btn--dark" href="tel:0667604158">電話問い合わせ（10:00—18:00）</a>
       <a class="btn btn--outdark" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener">LINEで相談</a>
       <a class="btn btn--outdark" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener">Instagram</a>
     </div>
@@ -675,7 +677,7 @@ function agSubmit(){
 </footer>
 
 <nav class="mbar">
-  <a class="pri" href="tel:0667604158">電話する</a>
+  <a class="pri" href="tel:0667604158">電話問い合わせ</a>
   <a href="/a-and-g/contact">お問い合わせ</a>
 </nav>
 

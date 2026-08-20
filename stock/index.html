@@ -539,8 +539,10 @@ p{margin:0}
 .sv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .sv-card{background:var(--ag-white);border:1px solid var(--ag-line);
   padding:clamp(28px,3.2vw,44px);position:relative}
-.sv-card .no{position:absolute;top:clamp(24px,2.6vw,36px);right:clamp(24px,2.6vw,36px);
-  font-family:var(--ui);font-size:13px;letter-spacing:.12em;color:var(--ag-muted)}
+.sv-card .no{position:absolute;top:clamp(14px,1.6vw,22px);right:clamp(20px,2.2vw,30px);
+  font-family:var(--ui);font-size:clamp(48px,4.6vw,68px);font-weight:700;line-height:1;
+  letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px #c6c5be;
+  pointer-events:none;user-select:none}
 .sv-card .en{font-family:var(--ui);font-size:12px;letter-spacing:.18em;
   color:var(--ag-muted);display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .sv-card .en::before{content:"";width:14px;height:2px;background:var(--ag-red)}
@@ -610,7 +612,7 @@ p{margin:0}
         <b>お探しの車両があればご相談ください</b>
         <span>ご希望をうかがってお探しすることもできます。</span>
       </div>
-      <a class="btn btn--line" href="/a-and-g/contact">お問い合わせ</a>
+      <a class="btn btn--line" href="/a-and-g/contact">お問い合わせフォーム</a>
     </div>
   </section>
 </div></div>
@@ -635,7 +637,7 @@ p{margin:0}
 </footer>
 
 <nav class="mbar">
-  <a class="pri" href="tel:0667604158">電話する</a>
+  <a class="pri" href="tel:0667604158">電話問い合わせ</a>
   <a href="/a-and-g/contact">お問い合わせ</a>
 </nav>
 
