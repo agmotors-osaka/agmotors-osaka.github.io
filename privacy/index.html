@@ -50,7 +50,7 @@ p{margin:0}
   gap:clamp(14px,1.6vw,22px)}
 .hdr__logo{display:flex;align-items:center;min-height:44px;flex:none}
 .hdr__logo img{height:32px;width:auto;object-fit:contain}
-.hdr__act{display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);flex:none;
+.hdr__act{display:flex;align-items:center;gap:clamp(14px,1.4vw,22px);flex:none;
   margin-inline-start:auto}
 /* Plain text nav — no boxes, no rules. Hover is a hairline underline, the
    same treatment the reference sites use. */
@@ -59,9 +59,9 @@ p{margin:0}
 .nav a{display:flex;align-items:center;min-height:44px;padding:0 3px;
   font-weight:700;opacity:.92;white-space:nowrap;transition:opacity .18s}
 .nav a:hover{opacity:1;box-shadow:inset 0 -1px var(--ag-white)}
-.tel{font-family:var(--ui);font-size:19px;letter-spacing:.03em;white-space:nowrap;
-  display:flex;align-items:center;min-height:44px}
-.tel small{display:block;font-size:11px;letter-spacing:.14em;opacity:.6;font-weight:500}
+.tel{font-family:var(--ui);font-size:19px;font-weight:600;letter-spacing:.03em;
+  white-space:nowrap;display:flex;align-items:center;min-height:44px}
+.tel small{display:block;font-size:10.5px;letter-spacing:.14em;opacity:.55;font-weight:500}
 /* Label left, arrow right — the closing affordance premium dealer sites use.
    The arrow is generated here so no template carries a literal "→". */
 .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;
@@ -97,8 +97,33 @@ p{margin:0}
 .btn--dark:hover{background:#333}
 .btn--outdark{border-color:#bdbcb5;color:var(--ag-ink)}
 .btn--outdark:hover{background:rgba(0,0,0,.06)}
-.btn--sm{min-height:44px;font-size:15px;padding:0 18px}
+.btn--sm{min-height:44px;font-size:14.5px;padding:0 16px;gap:14px}
 .burger{display:none}
+
+/* ---------- mobile menu drawer ----------
+   The hamburger previously toggled nothing — below the nav breakpoint the
+   site had no navigation at all. Full-screen black drawer: nav links, tel,
+   SNS. Toggled by .burger, closed by its own ✕ or any link. */
+#mmenu{position:fixed;inset:0;z-index:70;background:var(--ag-black);
+  color:var(--ag-white);display:none;flex-direction:column;
+  padding:84px var(--pad) 40px;overflow:auto}
+#mmenu.on{display:flex}
+body.menu-open{overflow:hidden}
+.mclose{position:absolute;top:16px;right:var(--pad);width:44px;height:44px;
+  display:grid;place-items:center;background:none;
+  border:1px solid rgba(255,255,255,.4);border-radius:2px;cursor:pointer;color:#fff}
+.mclose svg{width:18px;height:18px;display:block}
+#mmenu nav{display:grid}
+#mmenu nav a{display:flex;align-items:center;justify-content:space-between;
+  min-height:58px;font-size:18px;font-weight:500;letter-spacing:.02em;
+  border-bottom:1px solid var(--ag-line-d)}
+#mmenu nav a::after{content:"→";font-family:var(--ui);font-size:15px;
+  color:var(--ag-muted-d)}
+#mmenu .m-tel{margin-top:32px;font-family:var(--ui);font-size:26px;font-weight:600;
+  letter-spacing:.03em;display:block}
+#mmenu .m-tel small{display:block;font-family:var(--sans);font-size:12.5px;
+  font-weight:400;letter-spacing:.06em;color:var(--ag-muted-d);margin-bottom:6px}
+#mmenu .sns{margin-top:28px}
 
 /* ---------- SNS ----------
    Each mark carries its own brand colour, so the chips need a light base to sit
@@ -305,20 +330,11 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
 
 /* ---------- responsive ---------- */
-@media (max-width:1400px){
-  .hdr .tel{display:none}
-}
 @media (max-width:1279px){
   /* Measured fit boundary for the single-row header: with compact chips the
      full row (logo + 8 chips + SNS + CTA, tel already hidden) fits at 1280px
      and squeezes below it, so the hamburger takes over there. */
   .nav,.hdr__act .btn,.hdr__act .tel{display:none}
-  /* With nav/tel/CTA gone, the SNS circles are the only thing left beside the
-     logo — at their full 44px desktop size they read as oversized in the now-
-     sparse row, so shrink them here (header only; footer SNS stay at 44px). */
-  .hdr__act .sns{gap:8px}
-  .hdr__act .sns__i{width:36px;height:36px}
-  .hdr__act .sns__i svg{width:17px;height:17px}
   .burger{display:grid;place-items:center;width:44px;height:44px;
     background:none;border:1px solid rgba(255,255,255,.4);border-radius:2px;cursor:pointer}
   .burger i{display:block;width:19px;height:1.5px;background:#fff;box-shadow:0 6px #fff,0 -6px #fff}
@@ -577,15 +593,24 @@ p{margin:0}
 <header class="hdr">
   <div class="wrap">
     <a class="hdr__logo" href="/a-and-g/"><img src="/a-and-g/images/brand/ag-logo-light.png" width="875" height="348" alt="株式会社A&amp;G"></a>
-    <nav class="nav"><a href="/a-and-g/stock">在庫車両</a><a href="/a-and-g/vehicles">取扱車種</a><a href="/a-and-g/services">サービス</a><a href="/a-and-g/gallery">ギャラリー</a><a href="/a-and-g/company">会社概要</a><a href="/a-and-g/recruit">採用情報</a><a href="/a-and-g/access">店舗情報</a><a href="/a-and-g/contact">お問い合わせ</a></nav>
+    <nav class="nav"><a href="/a-and-g/stock">在庫車両</a><a href="/a-and-g/services">サービス</a><a href="/a-and-g/gallery">ギャラリー</a><a href="/a-and-g/company">会社概要</a><a href="/a-and-g/recruit">採用情報</a><a href="/a-and-g/access">店舗情報</a><a href="/a-and-g/contact">お問い合わせ</a></nav>
     <div class="hdr__act">
-      <div class="sns "><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
       <a class="tel" href="tel:0667604158"><span><small>TEL 10:00—18:00</small>06-6760-4158</span></a>
       <a class="btn btn--fill btn--sm btn--glow" href="/a-and-g/stock">在庫車両を見る</a>
-      <button class="burger" aria-label="メニューを開く"><i></i></button>
+      <button class="burger" aria-label="メニューを開く" aria-expanded="false"><i></i></button>
     </div>
   </div>
 </header>
+
+<div id="mmenu" aria-hidden="true">
+  <button class="mclose" aria-label="メニューを閉じる">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <nav><a href="/a-and-g/stock">在庫車両</a><a href="/a-and-g/services">サービス</a><a href="/a-and-g/gallery">ギャラリー</a><a href="/a-and-g/company">会社概要</a><a href="/a-and-g/recruit">採用情報</a><a href="/a-and-g/access">店舗情報</a><a href="/a-and-g/contact">お問い合わせ</a></nav>
+  <a class="m-tel" href="tel:0667604158"><small>TEL 10:00—18:00（月曜定休）</small>06-6760-4158</a>
+  <div class="sns "><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
+</div>
 
 <main>
 <div class="phero"><div class="wrap">
@@ -626,7 +651,7 @@ p{margin:0}
         </address>
         <div class="sns sns--ft"><a class="sns__i sns__i--instagram" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのInstagram（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/></svg></a><a class="sns__i sns__i--threads" href="https://www.threads.com/@aandg0123" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのThreads（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.2 11.35c-.09-.04-.18-.09-.28-.13-.16-3.01-1.8-4.73-4.56-4.75h-.04c-1.65 0-3.02.7-3.87 1.98l1.52 1.04c.63-.95 1.62-1.15 2.35-1.15h.03c.91.01 1.6.27 2.04.78.32.37.54.88.65 1.52a14.6 14.6 0 0 0-2.61-.13c-2.63.15-4.32 1.68-4.2 3.81.06 1.08.6 2.01 1.52 2.61.78.51 1.78.76 2.82.7 1.38-.08 2.46-.6 3.22-1.56.57-.72.94-1.65 1.1-2.83.66.4 1.15.92 1.42 1.54.46 1.05.49 2.77-.94 4.19-1.25 1.24-2.76 1.77-5.03 1.79-2.52-.02-4.43-.82-5.67-2.36C4.5 17.02 3.9 14.92 3.87 12.24c.03-2.68.63-4.78 1.8-6.23C6.9 4.47 8.81 3.67 11.33 3.65c2.54.02 4.48.82 5.77 2.38.63.77 1.11 1.73 1.42 2.85l1.78-.47c-.38-1.38-.97-2.57-1.78-3.55C16.97 2.86 14.5 1.85 11.34 1.83h-.01C8.17 1.85 5.73 2.87 4.09 4.87 2.63 6.65 1.88 9.12 1.85 12.23v.02c.03 3.11.78 5.58 2.24 7.36 1.64 2 4.08 3.02 7.24 3.04h.01c2.81-.02 4.79-.75 6.42-2.36 2.13-2.1 2.07-4.73 1.36-6.35-.51-1.16-1.47-2.1-2.79-2.72zm-4.44 4.5c-1.17.07-2.39-.45-2.45-1.56-.05-.82.58-1.74 2.53-1.85.22-.02.44-.02.66-.02.71 0 1.37.07 1.97.2-.22 2.8-1.63 3.16-2.71 3.22z"/></svg></a><a class="sns__i sns__i--line" href="https://lin.ee/HfN0m0B" target="_blank" rel="noopener noreferrer" aria-label="A&amp;GのLINE（新しいタブで開きます）"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3.2c-4.86 0-8.8 3.2-8.8 7.15 0 3.53 3.12 6.49 7.34 7.05.29.06.68.19.78.44.09.22.06.57.03.79l-.13.77c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27 1.31-1.44 1.65-2.9 1.65-4.27C20.8 6.4 16.86 3.2 12 3.2z"/><g fill="#06C755"><rect x="6.35" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="6.35" y="11.4" width="2.5" height="1" rx=".2"/><rect x="9.6" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="11.7" y="8.5" width=".95" height="3.9" rx=".2"/><rect x="14.0" y="8.5" width=".95" height="3.9" rx=".2"/><path d="M11.7 8.5h.95l2.3 3.9h-.95z"/><rect x="16.0" y="8.5" width="1.02" height="3.9" rx=".2"/><rect x="16.0" y="8.5" width="2.4" height="1" rx=".2"/><rect x="16.0" y="10.0" width="2.1" height=".95" rx=".2"/><rect x="16.0" y="11.4" width="2.4" height="1" rx=".2"/></g></svg></a></div>
       </div>
-      <nav class="ft__nav"><a href="/a-and-g/stock">在庫車両</a><a href="/a-and-g/vehicles">取扱車種</a><a href="/a-and-g/services">サービス</a><a href="/a-and-g/gallery">ギャラリー</a><a href="/a-and-g/company">会社概要</a><a href="/a-and-g/recruit">採用情報</a><a href="/a-and-g/access">店舗情報</a><a href="/a-and-g/contact">お問い合わせ</a><a href="/a-and-g/news">お知らせ</a><a href="/a-and-g/privacy">プライバシーポリシー</a><a href="https://www.carsensor.net/shop/osaka/327843001/stocklist/">カーセンサー</a></nav>
+      <nav class="ft__nav"><a href="/a-and-g/stock">在庫車両</a><a href="/a-and-g/services">サービス</a><a href="/a-and-g/gallery">ギャラリー</a><a href="/a-and-g/company">会社概要</a><a href="/a-and-g/recruit">採用情報</a><a href="/a-and-g/access">店舗情報</a><a href="/a-and-g/contact">お問い合わせ</a><a href="/a-and-g/news">お知らせ</a><a href="/a-and-g/privacy">プライバシーポリシー</a><a href="https://www.carsensor.net/shop/osaka/327843001/stocklist/">カーセンサー</a></nav>
     </div>
     <div class="ft__bot"><span>© 2026 株式会社A&amp;G</span></div>
   </div>
@@ -637,6 +662,23 @@ p{margin:0}
   <a href="/a-and-g/contact">お問い合わせ</a>
 </nav>
 
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('mmenu');
+  if(!b||!m)return;
+  function set(o){
+    m.classList.toggle('on',o);
+    document.body.classList.toggle('menu-open',o);
+    b.setAttribute('aria-expanded',o?'true':'false');
+    m.setAttribute('aria-hidden',o?'false':'true');
+  }
+  b.addEventListener('click',function(){ set(!m.classList.contains('on')); });
+  m.querySelector('.mclose').addEventListener('click',function(){ set(false); });
+  [].forEach.call(m.querySelectorAll('nav a'),function(a){
+    a.addEventListener('click',function(){ set(false); });
+  });
+})();
+</script>
 
 </body>
 </html>
