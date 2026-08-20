@@ -98,6 +98,38 @@ p{margin:0}
 .btn--outdark{border-color:#bdbcb5;color:var(--ag-ink)}
 .btn--outdark:hover{background:rgba(0,0,0,.06)}
 .btn--sm{min-height:44px;font-size:14.5px;padding:0 16px;gap:14px}
+
+/* ---------- arrow-reveal button ----------
+   Vanilla port of the OriginKit Arrow Reveal Button: label left, a round
+   badge right; on hover the badge disc scales up to flood the whole pill and
+   the arrow travels from the badge centre to the button centre. The React/
+   framer-motion original is replaced by two measured CSS vars per button
+   (--rvl-s: cover scale, --rvl-x: centre travel) set by RVL_JS on load and
+   resize, and the same 0.46s cubic-bezier(.44,0,.56,1) ease. */
+.rvl{position:relative;display:inline-flex;align-items:center;
+  justify-content:space-between;gap:16px;min-height:52px;
+  padding:6px 6px 6px 22px;border-radius:999px;overflow:hidden;
+  background:var(--ag-ink);border:1px solid rgba(255,255,255,.38);color:#fff;
+  font-size:15px;font-weight:500;letter-spacing:.04em;white-space:nowrap;
+  transition:transform .18s ease}
+.rvl:active{transform:scale(.97)}
+.rvl__t{position:relative;z-index:1;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl__badge{flex:none;position:relative;z-index:2;width:38px;height:38px;
+  border-radius:50%;background:var(--ag-red);transform-origin:center;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl__i{position:absolute;z-index:3;right:6px;top:0;bottom:0;margin:auto 0;
+  width:38px;height:38px;display:grid;place-items:center;
+  font-family:var(--ui);font-size:16px;color:#fff;pointer-events:none;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl:hover .rvl__badge,.rvl:focus-visible .rvl__badge{transform:scale(var(--rvl-s,20))}
+.rvl:hover .rvl__i,.rvl:focus-visible .rvl__i{transform:translateX(var(--rvl-x,0px))}
+.rvl:hover .rvl__t{transform:translateX(8px)}
+.rvl--light{background:var(--ag-white);border-color:var(--ag-white);color:var(--ag-ink)}
+@media (prefers-reduced-motion:reduce){
+  .rvl:hover .rvl__badge{transform:none}
+  .rvl:hover .rvl__badge{background:var(--ag-red)}
+}
 .burger{display:none}
 
 /* ---------- mobile menu drawer ----------
@@ -363,7 +395,7 @@ body.menu-open{overflow:hidden}
   .sns__i svg{width:19px;height:19px}
   .quick .wrap{flex-direction:column;align-items:stretch}
   .quick__acts{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
-  .quick__acts .btn{width:100%}
+  .quick__acts .rvl{width:100%}
   .shead{flex-direction:column;align-items:stretch;gap:12px}
   .shead__link{margin:0}
   .rail{grid-auto-columns:78%;margin-inline:calc(var(--pad)*-1);

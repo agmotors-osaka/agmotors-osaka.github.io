@@ -95,6 +95,38 @@ p{margin:0}
 .btn--outdark{border-color:#bdbcb5;color:var(--ag-ink)}
 .btn--outdark:hover{background:rgba(0,0,0,.06)}
 .btn--sm{min-height:44px;font-size:14.5px;padding:0 16px;gap:14px}
+
+/* ---------- arrow-reveal button ----------
+   Vanilla port of the OriginKit Arrow Reveal Button: label left, a round
+   badge right; on hover the badge disc scales up to flood the whole pill and
+   the arrow travels from the badge centre to the button centre. The React/
+   framer-motion original is replaced by two measured CSS vars per button
+   (--rvl-s: cover scale, --rvl-x: centre travel) set by RVL_JS on load and
+   resize, and the same 0.46s cubic-bezier(.44,0,.56,1) ease. */
+.rvl{position:relative;display:inline-flex;align-items:center;
+  justify-content:space-between;gap:16px;min-height:52px;
+  padding:6px 6px 6px 22px;border-radius:999px;overflow:hidden;
+  background:var(--ag-ink);border:1px solid rgba(255,255,255,.38);color:#fff;
+  font-size:15px;font-weight:500;letter-spacing:.04em;white-space:nowrap;
+  transition:transform .18s ease}
+.rvl:active{transform:scale(.97)}
+.rvl__t{position:relative;z-index:1;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl__badge{flex:none;position:relative;z-index:2;width:38px;height:38px;
+  border-radius:50%;background:var(--ag-red);transform-origin:center;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl__i{position:absolute;z-index:3;right:6px;top:0;bottom:0;margin:auto 0;
+  width:38px;height:38px;display:grid;place-items:center;
+  font-family:var(--ui);font-size:16px;color:#fff;pointer-events:none;
+  transition:transform .46s cubic-bezier(.44,0,.56,1)}
+.rvl:hover .rvl__badge,.rvl:focus-visible .rvl__badge{transform:scale(var(--rvl-s,20))}
+.rvl:hover .rvl__i,.rvl:focus-visible .rvl__i{transform:translateX(var(--rvl-x,0px))}
+.rvl:hover .rvl__t{transform:translateX(8px)}
+.rvl--light{background:var(--ag-white);border-color:var(--ag-white);color:var(--ag-ink)}
+@media (prefers-reduced-motion:reduce){
+  .rvl:hover .rvl__badge{transform:none}
+  .rvl:hover .rvl__badge{background:var(--ag-red)}
+}
 .burger{display:none}
 
 /* ---------- mobile menu drawer ----------
@@ -360,7 +392,7 @@ body.menu-open{overflow:hidden}
   .sns__i svg{width:19px;height:19px}
   .quick .wrap{flex-direction:column;align-items:stretch}
   .quick__acts{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
-  .quick__acts .btn{width:100%}
+  .quick__acts .rvl{width:100%}
   .shead{flex-direction:column;align-items:stretch;gap:12px}
   .shead__link{margin:0}
   .rail{grid-auto-columns:78%;margin-inline:calc(var(--pad)*-1);
@@ -430,10 +462,10 @@ body.menu-open{overflow:hidden}
       <span>10:00—18:00 ／ 月曜定休</span>
     </div>
     <div class="quick__acts">
-      <a class="btn btn--line btn--sm" href="/a-and-g/stock">在庫一覧</a>
-      <a class="btn btn--line btn--sm" href="https://www.carsensor.net/shop/osaka/327843001/stocklist/">カーセンサー</a>
-      <a class="btn btn--line btn--sm" href="/a-and-g/access">店舗情報</a>
-      <a class="btn btn--line btn--sm" href="tel:0667604158">電話問い合わせ</a>
+      <a class="rvl" href="/a-and-g/stock"><span class="rvl__t">在庫一覧</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl" href="https://www.carsensor.net/shop/osaka/327843001/stocklist/"><span class="rvl__t">カーセンサー</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl" href="/a-and-g/access"><span class="rvl__t">店舗情報</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl" href="tel:0667604158"><span class="rvl__t">電話問い合わせ</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -533,9 +565,9 @@ body.menu-open{overflow:hidden}
       <p>在庫確認・買取査定・ご来店のご予約は、お電話またはSNSのメッセージで承ります。</p>
     </div>
     <div class="cc__a reveal">
-      <a class="btn btn--fill btn--noarw" href="tel:0667604158">06-6760-4158</a>
-      <a class="btn btn--line" href="https://www.instagram.com/aandg0123/">Instagram</a>
-      <a class="btn btn--line" href="/a-and-g/contact">お問い合わせフォーム</a>
+      <a class="rvl rvl--light" href="tel:0667604158"><span class="rvl__t">06-6760-4158</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl" href="https://www.instagram.com/aandg0123/" target="_blank" rel="noopener"><span class="rvl__t">Instagram</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
+      <a class="rvl" href="/a-and-g/contact"><span class="rvl__t">お問い合わせフォーム</span><span class="rvl__badge" aria-hidden="true"></span><span class="rvl__i" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -729,6 +761,27 @@ body.menu-open{overflow:hidden}
   [].forEach.call(m.querySelectorAll('nav a'),function(a){
     a.addEventListener('click',function(){ set(false); });
   });
+})();
+</script>
+<script>
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('.rvl'));
+  if(!btns.length)return;
+  function measure(){
+    btns.forEach(function(b){
+      var badge=b.querySelector('.rvl__badge');
+      if(!badge)return;
+      var w=b.offsetWidth,h=b.offsetHeight,d=badge.offsetWidth;
+      if(!w||!h||!d)return;
+      var cx=badge.offsetLeft+d/2,cy=badge.offsetTop+badge.offsetHeight/2;
+      var far=Math.hypot(Math.max(cx,w-cx),Math.max(cy,h-cy));
+      b.style.setProperty('--rvl-s',(2*far*1.02/d).toFixed(2));
+      b.style.setProperty('--rvl-x',(w/2-cx).toFixed(1)+'px');
+    });
+  }
+  measure();
+  addEventListener('resize',measure);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
 })();
 </script>
 
