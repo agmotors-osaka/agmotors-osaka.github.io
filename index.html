@@ -155,7 +155,12 @@ body.menu-open{overflow:hidden}
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,36fr) minmax(0,64fr);
   max-width:var(--max);margin-inline:auto;
   background:var(--ag-black);align-items:stretch}
-.hero__stage{position:relative;aspect-ratio:4/3;overflow:hidden;order:2}
+/* width:100% is load-bearing: the stage's only children are absolutely
+   positioned, so its intrinsic width is 0. Chromium stretches a grid item to
+   the column track anyway; WebKit (iOS Safari) resolves aspect-ratio from the
+   0 intrinsic width instead, collapsing the stage — and the whole hero photo —
+   to 0x0 on iPhone. An explicit width pins both engines to the track width. */
+.hero__stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;order:2}
 .hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.05s ease}
 .hero__slide[data-on]{opacity:1}
 .hero__slide picture,.hero__slide img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
