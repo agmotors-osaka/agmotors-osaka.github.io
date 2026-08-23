@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aandg-car.jp/sitemap.xml
